@@ -1,6 +1,6 @@
 body{
     background-color:rgb(124, 117, 115);
-    background-image:url(images/background1.png);
+    background-image:url(../images/background1.png);
     background-size: cover;
     background-repeat : no-repeat;
     background-position:center;
@@ -37,9 +37,18 @@ h1{
     text-decoration: underline;
     text-align:center;
 }
-a{
+
+p{
     color:white;
 }
-p{
+.navigation
+{
+    text-align: center;
+
+}
+
+
+a
+{
     color:white;
 }
