@@ -1,0 +1,187 @@
+
+/* ROBOTO font*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+
+/*----------------------------------------------------- */
+/*--------------- GENERAL------------------------------ */
+/*----------------------------------------------------- */
+html
+{
+  font-family: 'Roboto Mono', monospace;
+  background: url('../images/general_bckg.jpg');
+}
+
+.general_btn {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  
+  border-color: #363636;
+  border-style:solid
+}
+
+p
+{
+  margin: 1%;
+}
+
+/*----------------------------------------------------- */
+/*--------------- HEADER CONTAINER -------------------- */
+/*----------------------------------------------------- */
+#header_container
+{
+  height: 18vh;
+  border-color: #363636;
+  border-style: solid;
+}
+
+h1
+{
+  text-align: center;
+}
+
+/*----------------------------------------------------- */
+/*--------------- NAVIGATION BAR--0-------------------- */
+/*----------------------------------------------------- */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+
+
+/*----------------------------------------------------- */
+/*--------------- DESC CONTAINER ---------------------- */
+/*----------------------------------------------------- */
+#desc_container
+{
+  height: 55vh;
+  display: flex;
+  border-color: #363636;
+  border-style: solid;
+  
+  margin: 1%;
+  padding: 0;
+  align-self: center;
+  
+}
+
+#complexity
+{
+  width: 25%;
+}
+#desc
+{
+  width: 75%;
+}
+#interview_btn
+{
+  width: 10%;
+  align-self: center;
+  margin: 1%;
+}
+
+/*----------------------------------------------------- */
+/*--------------- ANIMATION CONTAINER ----------------- */
+/*----------------------------------------------------- */
+#animation_container
+{
+  height: 50vh;
+  display: flex;
+  border-color: #363636;
+  border-style: solid;
+  
+  margin: 1%;
+  padding: 0;
+  align-self: center;
+  
+}
+
+#code
+{
+  width: 30%;
+}
+
+#animation
+{
+  width: 70%;
+  background-color:#BBBBBB;
+}
+
+/*----------------------------------------------------- */
+/*--------------- INTERVIEW CONTAINER ----------------- */
+/*----------------------------------------------------- */
+#interview_container
+{
+  border-color: #363636;
+  border-style: solid;
+  margin-top: 1vh;
+  
+  margin: 1%;
+  padding: 0;
+  
+}
+
+/*----------------------------------------------------- */
+/*--------------- TABLE GRAPHICS ---------------------- */
+/*----------------------------------------------------- */
+
+table
+{
+  margin: 3%;
+  border-color: #363636;
+  border-style:solid
+}
+
+thead
+{
+  background-color: #4CAF50;
+  color: white;
+}
+td,th
+{   
+  border: 1px solid #FFFFFF;
+  padding: 2vw;
+  text-align: left;
+}
+
+.grayrow
+{
+  background-color: #E0E0E0;
+  color: #363636;
+}
+
+.whiterow
+{
+  background-color: #F1F1F1;
+  color: #363636;
+}
