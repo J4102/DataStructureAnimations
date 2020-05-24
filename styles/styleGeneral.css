@@ -20,7 +20,7 @@ html
   padding: 15px 32px;
   text-align: center;
   font-size: 16px;
-  
+  cursor: pointer;
   border-color: #363636;
   border-style:solid
 }
@@ -35,7 +35,7 @@ p
 /*----------------------------------------------------- */
 #header_container
 {
-  height: 18vh;
+  height: 9vh;
   border-color: #363636;
   border-style: solid;
 }
@@ -44,6 +44,7 @@ h1
 {
   text-align: center;
 }
+
 
 /*----------------------------------------------------- */
 /*--------------- NAVIGATION BAR--0-------------------- */
@@ -84,8 +85,9 @@ li a.active {
 /*----------------------------------------------------- */
 #desc_container
 {
-  height: 55vh;
-  display: flex;
+  height: auto;
+  display: auto;
+  position:relative;
   border-color: #363636;
   border-style: solid;
   
@@ -94,29 +96,84 @@ li a.active {
   align-self: center;
   
 }
-
+#tableContainer
+{
+    height:auto;
+    display:auto;
+    text-align: center;
+    align-self:center;
+    overflow: hidden;
+    padding-top: 30px;
+}
 #complexity
 {
-  width: 25%;
+   float:left;
+ width:50%;
+ align-self:center;
+ 
+
+}
+#methods
+{
+    float:right;
+   width:50%;
+   align-self:center;
+   
 }
 #desc
 {
-  width: 75%;
+    position: relative;
+    
+      
+     
+  height: 75%;
 }
-#interview_btn
+#desc header
 {
+    color:black;
+    font-size: 20px;
+    text-decoration: underline;
+}
+#interview_btn 
+{
+
   width: 10%;
-  align-self: center;
   margin: 1%;
+  
+  
+
 }
 
+#interview_btn  div{
+
+    background: black;
+    color: white;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s, opacity 0.5s linear; 
+    transition: visibility 0s, opacity 0.5s linear;
+    text-align: center;
+   }
+   /* Hover on Parent Container */
+   #interview_btn:hover{
+    cursor: pointer;
+   }
+   
+   #interview_btn:hover div{
+    width: 150px;
+    padding: 8px 15px;
+    visibility: visible;
+    opacity: 0.7; 
+   }
 /*----------------------------------------------------- */
 /*--------------- ANIMATION CONTAINER ----------------- */
 /*----------------------------------------------------- */
 #animation_container
 {
-  height: 50vh;
-  display: flex;
+    height:55vh;
+    display:flex;
   border-color: #363636;
   border-style: solid;
   
@@ -128,11 +185,19 @@ li a.active {
 
 #code
 {
+  float:left;
   width: 30%;
+  background-color: white;
+  border: 1px solid black;
+  
+ white-space:pre-wrap;
+  
+  
 }
 
 #animation
 {
+    float:right;
   width: 70%;
   background-color:#BBBBBB;
 }
@@ -145,7 +210,8 @@ li a.active {
   border-color: #363636;
   border-style: solid;
   margin-top: 1vh;
-  
+  float :left;
+  width:98%;
   margin: 1%;
   padding: 0;
   

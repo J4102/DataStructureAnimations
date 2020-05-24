@@ -10,17 +10,31 @@
 
 <div id="header_container">
     <ul>
-      <li><a href="">Home</a></li>
-      <li><a href="">Linked List</a></li>
-      <li><a href="">Stack</a></li>
-      <li><a href="">Queue</a></li>
-      <li><a href="">Binary Search Tree</a></li>
-      <li><a href="" class="active">HashTable</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="linkedlist.html">Linked List</a></li>
+      <li><a href="Stack.html">Stack</a></li>
+      <li><a href="Queue.html" class="active">Queue</a></li>
+      <li><a href="tree.html">Tree</a></li>
+      <li><a href="hashtable.html">HashTable</a></li>
     </ul>
-    <h1>Queue</h1>
+
   </div>
-  
+  <h1>Queue</h1>
   <div id="desc_container">
+    <div id="desc">
+      <p>
+        A queue is a type of data structure in 
+        computer science where both ends of the 
+        data structure can be modified. By convention, 
+        the front of the and back of the queue are
+         known as the head and tail respectively. 
+         Upon adding elements - enqueing- the added
+          elements start at the tail. 
+          Removing elements - dequeing - will remove 
+          the element at the head.  
+
+      </p>
+    </div>
     <div id="complexity">
       <table>
         <thead>
@@ -43,24 +57,43 @@
           
           <tr class="whiterow">
             <th>Search</th>
-            <th>Θ()</th>
+            <th>Θ(n)</th>
           </tr>
         </tbody>
       </table>
     </div>
+    <div id="methods">
+      <table>
+          <thead>
+            <tr>
+              <th>Queue Terms</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="whiterow">
+              <th>Enqueue</th>
+              <th>insert an element at the tail of the queue</th>
+            </tr>
+            
+            <tr class="grayrow">
+              <th>Dequeue </th>
+              <th>remove an element at the head of the queue</th>
+            </tr>
+          </tbody>
+        </table>
+  </div>
     
-    <div id="desc">
-      <p>
-        A queue is used to store a collection of elements. The queue has two ends where one end is used
-               to add elements and the other is to remove elements only. The follows the concept FIFO (first in, first out).
-      </p>
-    </div>
     
-    <div id="interview_btn">
-      <button class="general_btn">
-        Click to see common interview questions
-      </button>
-    </div>
+    
+  <div id="interview_btn">
+    <div>Frequently asked questions during interviews</div>
+    <button class="general_btn">
+        GO
+    </button>
+  
+  </div>
   </div>
   
   <div id="animation_container">
