@@ -9,7 +9,7 @@
 html
 {
   font-family: 'Roboto Mono', monospace;
-  background: url('../images/general_bckg.jpg');
+  background:url('../images/index_bckgd.png');
 }
 
 .general_btn {
@@ -35,10 +35,16 @@ p
 /*----------------------------------------------------- */
 #header_container
 {
-  height: 9vh;
+margin-left:25%;
+top:0;
   border-color: #363636;
   border-style: solid;
+  text-align: center;
+  display:block;
+  position:fixed;
+  transition: top 0.3s;
 }
+
 
 h1
 {
