@@ -30,19 +30,24 @@ p
   margin: 1%;
 }
 
+
 /*----------------------------------------------------- */
 /*--------------- HEADER CONTAINER -------------------- */
 /*----------------------------------------------------- */
 #header_container
 {
-margin-left:25%;
-top:0;
+
+  width:50%;
+  top:0;
+  margin-left: 25%;
   border-color: #363636;
   border-style: solid;
   text-align: center;
   display:block;
-  position:fixed;
-  transition: top 0.3s;
+  position:sticky;
+  transition: top 0.3s ease-in-out;
+  overflow:visible;
+  
 }
 
 
@@ -56,16 +61,19 @@ h1
 /*--------------- NAVIGATION BAR--0-------------------- */
 /*----------------------------------------------------- */
 ul {
-  list-style-type: none;
+  list-style-type:none ;
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
+  position:sticky;
+ 
 }
 
 li {
   float: left;
+  
 }
 
 li a {
