@@ -7,6 +7,7 @@
     <meta name="description" content="Learn what a Queue is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
     <script src="scriptGeneral.js"></script>
+    <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
 </head>
 
 <div id="header_container">
@@ -23,6 +24,7 @@
   <h1>Queue</h1>
   <div id="desc_container">
     <div id="desc">
+      <header>Definition</header>
       <p>
         A queue is a type of data structure in 
         computer science where both ends of the 
@@ -36,66 +38,69 @@
 
       </p>
     </div>
-    <div id="complexity">
-      <table>
-        <thead>
-          <tr>
-            <th>Function</th>
-            <th>Time Complexity</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr class="whiterow">
-            <th>Insert</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="grayrow">
-            <th>Delete</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="whiterow">
-            <th>Search</th>
-            <th>Θ(n)</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="methods">
-      <table>
-          <thead>
-            <tr>
-              <th>Queue Terms</th>
-              <th>Definition</th>
-            </tr>
-          </thead>
-          
-          <tbody>
-            <tr class="whiterow">
-              <th>Enqueue</th>
-              <th>insert an element at the tail of the queue</th>
-            </tr>
-            
-            <tr class="grayrow">
-              <th>Dequeue </th>
-              <th>remove an element at the head of the queue</th>
-            </tr>
-          </tbody>
-        </table>
-  </div>
     
     
     
   <div id="interview_btn">
     <div>Frequently asked questions during interviews</div>
-    <button class="general_btn">
-        GO
-    </button>
+    <a href="#interview_container">
+      <i class="fas fa-arrow-down"></i>
+  </a>
+  </div>
+</div>
+<div id="tableContainer">
+  <div id="complexity">
+    <table>
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Time Complexity</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr class="whiterow">
+          <th>Insert</th>
+          <th>Θ(1)</th>
+        </tr>
+        
+        <tr class="grayrow">
+          <th>Delete</th>
+          <th>Θ(1)</th>
+        </tr>
+        
+        <tr class="whiterow">
+          <th>Search</th>
+          <th>Θ(n)</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="methods">
+    <table>
+        <thead>
+          <tr>
+            <th>Queue Terms</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr class="whiterow">
+            <th>Enqueue</th>
+            <th>insert an element at the tail of the queue</th>
+          </tr>
+          
+          <tr class="grayrow">
+            <th>Dequeue </th>
+            <th>remove an element at the head of the queue</th>
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
+
   
-  </div>
-  </div>
   
   <div id="animation_container">
     
@@ -111,7 +116,11 @@
     </div>
     
     <div id="animation">
-      
+      <input type="text" id="fname" name="fname" value="">
+      <div class="btn-methods">
+        <button>Insert</button>
+        <button>Remove</button>
+      </div>
       
       <canvas>
         

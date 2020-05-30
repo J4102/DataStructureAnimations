@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/styleGeneral.css">
     <link rel="stylesheet" href="styles/styleLinkedList.css">
     <script src="scriptGeneral.js"></script>
+    <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div id="header_container">
@@ -28,17 +30,14 @@
     <h1>LinkedList</h1>
     <div id="desc_container">
         <div id="desc">
+          <header>Definition</header>
+          <div class="overlay">
             <p> A linked list is a linear collection of elements/nodes
             in a sequence. The elements point to the next 
            instead of having a physical placement in memory.</p>
-       <header>Circular Linked List</header>
-         <p> A Circular linked list is a  linked list that 
-           can be traversed in one direction (fowards), similar to a singly-linked list or
-           two directions (fowards and backwards), similar to a doubly-linked list.
-            However, the last node which is the tail, 
-            points to the first node which is the head. 
-            Therefore, no node points to NULL.
-         </p>
+          </div>
+       
+        
        <header>Doubly-Linked List</header>       
        <p> A doubly-linked list is a linked list that 
            can be traversed in two directions (forwards and backwards).
@@ -46,42 +45,19 @@
        <header>Singly-Linked List</header>
            <p>A singly linked list is a  linked list that 
                is traversed in one direction (forwards) which is from the head to the tail.</p>
+               <header>Circular Linked List</header>
+         <p> A Circular linked list is a  linked list that 
+           can be traversed in one direction (fowards), similar to a singly-linked list or
+           two directions (fowards and backwards), similar to a doubly-linked list.
+            However, the last node which is the tail, 
+            points to the first node which is the head. 
+            Therefore, no node points to NULL.</p>
        
           
         </div>
             
     
-        <div id="tableContainer">
-            <div id="complexity">
-                <table>
-                    <thead>
-                      <tr>
-                        <th>Function</th>
-                        <th>Time Complexity</th>
-                      </tr>
-                    </thead>
-                    
-                    <tbody>
-                      <tr class="whiterow">
-                        <th>Insert</th>
-                        <th>Θ(1)</th>
-                      </tr>
-                      
-                      <tr class="grayrow">
-                        <th>Delete</th>
-                        <th>Θ(1)</th>
-                      </tr>
-                      
-                      <tr class="whiterow">
-                        <th>Search</th>
-                        <th>Θ(n)</th>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-            </div>
-          
-          </div>
+
           
        
         
@@ -89,12 +65,43 @@
         
         <div id="interview_btn">
             <div>Frequently asked questions during interviews</div>
-            <button class="general_btn">
-                GO
-            </button>
+            <a href="#interview_container">
+              <i class="fas fa-arrow-down"></i>
+          </a>
           
         </div>
          
+    </div>
+    <div id="tableContainer">
+      <div id="complexity">
+          <table>
+              <thead>
+                <tr>
+                  <th>Function</th>
+                  <th>Time Complexity</th>
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr class="whiterow">
+                  <th>Insert</th>
+                  <th>Θ(1)</th>
+                </tr>
+                
+                <tr class="grayrow">
+                  <th>Delete</th>
+                  <th>Θ(1)</th>
+                </tr>
+                
+                <tr class="whiterow">
+                  <th>Search</th>
+                  <th>Θ(n)</th>
+                </tr>
+              </tbody>
+            </table>
+            
+      </div>
+    
     </div>
     <div id="animation_container">
     
@@ -111,7 +118,11 @@
         
         <div id="animation">
           
-          
+          <input type="text" id="fname" name="fname" value="">
+          <div class="btn-methods">
+            <button>Insert</button>
+            <button>Remove</button>
+          </div>
           <canvas>
             
           </canvas>
