@@ -4,108 +4,10 @@ const canvas = document.querySelector('canvas')
 // getting 2D context of canvas
 const c = canvas.getContext('2d')
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-// var mouse = {
-//     x: undefined, 
-//     y: undefined
-// }
-
-// const MAX_RADIUS = 40;
-// const MIN_RADIUS = 10;
+canvas.width = 800;
+canvas.height = 800;
 
 
-window.addEventListener("mousemove", 
-
-    function(event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
-
-    }
-
-);
-
-window.addEventListener("resize", function(event)
-{
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-
-    // init();
-});
-
-// function Circle(x, y, dx, dy, radius)
-// {
-//     this.x = x;
-//     this.y = y;
-//     this.dx = dx;
-//     this.dy = dy;
-//     this.radius = radius
-//     var r = Math.random() * 255;
-//     var g = Math.random() * 255;
-//     var b = Math.random() * 255;
-
-
-//     this.draw = function()
-//     {
-//         c.beginPath();
-//         c.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-
-//         c.fillStyle = "rgb("+r+","+g+","+b+")";
-        
-//         c.fill();
-
-//     }
-
-//     this.update = function()
-//     {
-//         if(this.x+30 > innerWidth || this.x-this.radius < 0)
-//             this.dx = -this.dx;
-
-//         if(this.y + radius > innerHeight || this.y-radius < 0)
-//             this.dy = -this.dy;
-
-//         this.x += this.dx;
-//         this.y += this.dy;
-
-//         this.draw();
-
-//         //Interacting
-//         if(Math.abs(mouse.x - this.x) < 50 && Math.abs(mouse.y - this.y) < 50)
-//         {
-//             if(this.radius < MAX_RADIUS)
-//             {
-//                 this.radius+=1;
-//             }
-//         }
-//         else if(this.radius > MIN_RADIUS)
-//         {
-//             this.radius-=1;
-//         }
-
-
-//     }
-// }
-
-
-// var circleArray = [];
-
-
-
-// function init()
-// {
-//     circleArray = [];
-
-//     for(var i = 0; i < 600; i++)
-//     {
-//     var rad = Math.random() * 15;
-//     var x = (Math.random() * innerWidth) - rad*2 + rad;
-//     var y = (Math.random() * innerHeight) -rad*2 + rad;
-//     var dx = (Math.random() - 0.5) * 3;
-//     var dy = (Math.random() - 0.5) * 3;
-//     circleArray.push(new Circle(x, y, dx, dy, rad))
-//     }
-// }
 
 //x & y == top left corner of stack
 function Stack(x, y, itemWidth, itemHeight, numItems, speed)
@@ -150,20 +52,30 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed)
         }
     }
 
-    this.pop()
+    this.pop = function()
     {
+
+        if(this.numItems == 0)
+            return;
+        
         this.numItems--;
-        this.y-=this.itemHeight;
+        this.y+=this.itemHeight;
         
         this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
     }
 
-    this.push()
+    this.push = function()
     {
         this.numItems++;
-        this.y+=this.itemHeight;
+        this.y-=this.itemHeight;
 
         this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
     }
 
     /*
@@ -270,6 +182,14 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed)
     }
 }
 
+/*
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    ------------------------ Initializing object -----------------------------
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    */
+
 var stack = new Stack(100, 100, 100, 50, 3, 2);
 stack.draw();
 
@@ -281,6 +201,7 @@ var removed = false;
 var right = 0;
 var down = 0;
 
+var max = 3;
 
 function animate()
 {
@@ -289,43 +210,59 @@ function animate()
 
     //Refresh screen
     c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    stack.draw();
 
-    if(pop)
-    {
-        if(!removed)
-        {
-            stack.removeTopItem();
-            removed = true;
-        }
-        else if(right < stack.getItemWidth())
-        {
-            stack.moveRight();
-            right+=stack.getSpeed();
-        }
-        else if(down < stack.getHeight())    
-        {
-            stack.moveDown();
-            down+=stack.getSpeed();
-        }
-        //Repeat the animation again
-        else
-        {
-            stack.reset();
-            right = 0;
-            down = 0;
-            removed = false;
+    // if(pop)
+    // {
+        //Without sound - removing the stack item
 
-            //Wait 5 seconds here
-        }
-    }
-    else if(push)
-    {
+        // if(!removed)
+        // {
+        //     stack.removeTopItem();
+        //     removed = true;
+        // }
+        // else if(right < stack.getItemWidth())
+        // {
+        //     stack.moveRight();
+        //     right+=stack.getSpeed();
+        // }
+        // else if(down < stack.getHeight())    
+        // {
+        //     stack.moveDown();
+        //     down+=stack.getSpeed();
+        // }
+        // //Repeat the animation again
+        // else
+        // {
+        //     stack.reset();
+        //     right = 0;
+        //     down = 0;
+        //     removed = false;
 
-    }
+        //     //Wait 5 seconds here
+        // }
+        //}
+        
 
 
 }
 
 animate();
+
+document.getElementById("popBtn").addEventListener("click",
+
+    function()
+    {
+        stack.pop();
+    }
+);
+
+document.getElementById("pushBtn").addEventListener("click",
+
+    function()
+    {
+        stack.push();
+    }
+);
 
 // init();
