@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn what a binary search tree is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
+    <link rel="stylesheet" href="styles/styleTree.css">
     <script src="scriptGeneral.js"></script>
+    
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
     <title>Tree</title>
 </head>
@@ -21,6 +23,13 @@
     </ul>
     
   </div>
+  <header>Dark Mode</header>
+  <label class="switch">
+    
+    <input type="checkbox">
+    <span onclick="changeMode()" 
+    class="slider round"></span>
+  </label>
   <h1>Tree</h1>
   <div id="desc_container">
     
@@ -46,6 +55,77 @@
       <p>Search - Θ(log(n))</p>
   
     </div>
+    <div id="tableContainer">
+      <div id="complexity">
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Time Complexity</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="whiterow">
+              <th>Insert</th>
+              <th>Θ(log(n))</th>
+            </tr>
+            
+            <tr class="grayrow">
+              <th>Delete</th>
+              <th>Θ(log(n))</th>
+            </tr>
+            
+            <tr class="whiterow">
+              <th>Search</th>
+              <th>Θ(log(n))</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="methods">
+        <table>
+            <thead>
+              <tr>
+                <th>Tree Terms</th>
+                <th>Definition</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr class="whiterow">
+                <th>Root</th>
+                <th>a node with no parent; there can only be one root</th>
+              </tr>
+              
+              <tr class="grayrow">
+                <th>Leaf</th>
+                <th>a node with no children</th>
+              </tr>
+              
+              <tr class="whiterow">
+                <th>Siblings</th>
+                <th>two nodes with the same parent</th>
+              </tr>
+              <tr class="grayrow">
+                <th>Height of a node</th>
+                <th>length of the longest path from that node to a leaf (all leaves have height of zero)</th>
+              </tr>
+              <tr class="whiterow">
+                <th>Height of a tree</th>
+                <th>maximum depth of a node in that tree = height of the root</th>
+              </tr>
+              <tr class="grayrow">
+                <th>Depth of a node</th>
+                <th>length of the path from the root to that node</th>
+              </tr>
+             
+            </tbody>
+          </table>
+    </div>
+    
+    </div>
+            
     
     <div id="interview_btn">
       <div>Frequently asked questions during interviews</div>
@@ -56,77 +136,7 @@
   </div>
   
 </div>
-<div id="tableContainer">
-  <div id="complexity">
-    <table>
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Time Complexity</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr class="whiterow">
-          <th>Insert</th>
-          <th>Θ(log(n))</th>
-        </tr>
-        
-        <tr class="grayrow">
-          <th>Delete</th>
-          <th>Θ(log(n))</th>
-        </tr>
-        
-        <tr class="whiterow">
-          <th>Search</th>
-          <th>Θ(log(n))</th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="methods">
-    <table>
-        <thead>
-          <tr>
-            <th>Tree Terms</th>
-            <th>Definition</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr class="whiterow">
-            <th>Root</th>
-            <th>a node with no parent; there can only be one root</th>
-          </tr>
-          
-          <tr class="grayrow">
-            <th>Leaf</th>
-            <th>a node with no children</th>
-          </tr>
-          
-          <tr class="whiterow">
-            <th>Siblings</th>
-            <th>two nodes with the same parent</th>
-          </tr>
-          <tr class="grayrow">
-            <th>Height of a node</th>
-            <th>length of the longest path from that node to a leaf (all leaves have height of zero)</th>
-          </tr>
-          <tr class="whiterow">
-            <th>Height of a tree</th>
-            <th>maximum depth of a node in that tree = height of the root</th>
-          </tr>
-          <tr class="grayrow">
-            <th>Depth of a node</th>
-            <th>length of the path from the root to that node</th>
-          </tr>
-         
-        </tbody>
-      </table>
-</div>
 
-</div>
-        
   <div id="animation_container">
     
     <div id="code">

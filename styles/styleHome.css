@@ -9,6 +9,18 @@ html{
     background-repeat: no-repeat;
     background-size: cover;
 
+}
+body{
+    background-color:black;
+    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
+   
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     
 }
 

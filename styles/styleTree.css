@@ -1,0 +1,39 @@
+
+/*
+#desc
+{
+    float:left;
+    overflow:hidden;
+    width:50%
+}
+#tableContainer
+{
+    float:right;
+    overflow:hidden;
+    width:50%;
+    border:1px dotted green;
+}
+#complexity
+{ position:absolute;
+    float:top;
+   
+    overflow:hidden;
+}
+#methods
+{  
+    float:bottom;
+ 
+   
+}
+*/
+#complexity
+{
+    float:right;
+}
+#methods
+{  
+    float:left;
+ 
+   
+}
+
