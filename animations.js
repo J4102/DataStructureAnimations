@@ -8,6 +8,13 @@ canvas.width = 800;
 canvas.height = 800;
 
 
+/*
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    ------------------------STACK DATASTRUCTURE  ----------------------------------------------
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+*/
 
 //x & y == top left corner of stack
 function Stack(x, y, itemWidth, itemHeight, numItems, speed, data)
@@ -20,9 +27,11 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed, data)
     this.numItems = numItems;
     this.speed = speed;
 
-    c.fillStyle = "#ABCD05";
-    c.strokeStyle="#000000";
+    //Colors of the stack items
+    this.colors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"]
 
+
+    c.strokeStyle="black";
     
     
     //Current stack item value (remove/add)
@@ -35,23 +44,38 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed, data)
     this.oNumItems = numItems;
 
     //Draws stack on screen
+    //Call it everytime to continously draw on the screen
     this.draw = function()
     {
+        newY = 0;
+
         for(var i = 0; i < this.numItems; i++)
         {
-            //Draw rectangle
-            //100+0, 100+50, 100+100
             
+            //Starting height
             newY = this.y+(this.itemHeight*i);
 
-            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
-            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight);
-            
+            //Fill
+            c.fillStyle = this.colors[i%this.colors.length];
+            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight-10);
+
+            //Border
+            c.lineWidth = 4;
+            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight-10);
+
+            //Text
             c.fillStyle = "#000000";
-            //Draw text on rectangle   
-            c.fillText(data[i], this.x + (this.x/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
-            c.fillStyle = "#ABCD05";
+            c.font = '20px fantasy';
+            c.fillText(data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
         }
+
+        //Container of stack
+        c.beginPath();
+        c.moveTo(this.x-10, this.y-20);
+        c.lineTo(this.x-10, newY+this.itemHeight);
+        c.lineTo(this.x+this.itemWidth+10, newY+this.itemHeight);
+        c.lineTo(this.x+this.itemWidth+10, this.y-20);
+        c.stroke();
     }
 
     this.pop = function()
@@ -91,37 +115,9 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed, data)
 
         this.draw();
     }
-
-    /*
-    -------------------------------------------------------------------------------------------
-    -------------------------------------------------------------------------------------------
-    ------------------------NON INTERACTIVE MOVING THE RECTANGLES -----------------------------
-    -------------------------------------------------------------------------------------------
-    -------------------------------------------------------------------------------------------
-    */
-
-
-
-    this.getItemWidth = function()
-    {
-        return this.itemWidth;
-    }
-
-    this.getitemHeight = function()
-    {
-        return this.itemHeight;
-    }
-
-    this.getHeight = function()
-    {
-        return this.numItems*this.itemHeight;
-    }
-
-    this.getSpeed = function()
-    {
-        return this.speed;
-    }
 }
+
+
 
 /*
     -------------------------------------------------------------------------------------------
@@ -131,7 +127,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, speed, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack(100, 100, 100, 100, 3, 2, [1,2,3]);
+var stack = new Stack(100, 100, 200, 75, 4, 2, [4,3,2,1]);
 stack.draw();
 
 //These will determine which animations will be playing
