@@ -4,8 +4,8 @@ const canvas = document.querySelector('canvas')
 // getting 2D context of canvas
 const c = canvas.getContext('2d')
 
-canvas.width = 800;
-canvas.height = 800;
+canvas.width = 1500;
+canvas.height = 1500;
 
 /*
     -------------------------------------------------------------------------------------------
@@ -63,6 +63,21 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
             c.lineTo(newX+((this.itemWidth/4)*3), this.y+this.itemHeight);
             c.stroke();
 
+
+            //Text
+            c.fillStyle = "#000000";
+            c.font = '20px fantasy';
+            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+
+            c.stroke();
+
+            newX+= (this.itemWidth+spacing);
+        }
+
+        //Drawing arrows btn the rectangles
+        newX = this.x;
+        for(var i = 0; i < this.numItems-1; i++)
+        {
             //---------------------Top Arrow (next)--------------------------------------
 
             c.beginPath();
@@ -81,6 +96,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
 
 
             //--------------------Bottom arrow (prev)----------------------------
+            
             c.beginPath();
 
             //horizontal line
@@ -98,18 +114,39 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
             
             c.stroke();
 
-            //Text
-            c.fillStyle = "#000000";
-            c.font = '20px fantasy';
-            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
-
             newX+= (this.itemWidth+spacing);
         }
+    }
 
+    //Remove
+    this.delete = function()
+    {
 
-
+        if(this.numItems == 0)
+            return;
         
-        c.stroke();
+        this.numItems--;
+        this.data.pop();
+        this.colors.pop();
+        
+        this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
+    }
+
+    //Add
+    this.insert = function(num)
+    {
+        this.numItems++;
+        this.data.push(num);
+
+        this.colors.push(this.availColors[this.numItems % 4]);
+
+        this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
     }
     
     
@@ -404,5 +441,21 @@ document.getElementById("enqueueBtn").addEventListener("click",
     function()
     {
         queue.enqueue("1");
+    }
+);
+
+document.getElementById("deleteBtn").addEventListener("click",
+
+    function()
+    {
+        linkedList.delete();
+    }
+);
+
+document.getElementById("insertBtn").addEventListener("click",
+
+    function()
+    {
+        linkedList.insert("1");
     }
 );
