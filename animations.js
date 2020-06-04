@@ -10,7 +10,7 @@ canvas.height = 800;
 /*
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
-    ------------------------LINKED LIST DATASTRUCTURE  ----------------------------------------
+    ------------------------LINKED LIST (DOUBLY) DATASTRUCTURE  -------------------------------
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
 */
@@ -23,6 +23,61 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, data)
     this.itemHeight = itemHeight;
     this.numItems = numItems;
     this.data = data;
+
+    //Possible colors of the stack items
+    this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
+
+    //Colors being used
+    this.colors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
+    
+    c.strokeStyle="black";
+
+    //Draws stack on screen
+    //Call it everytime to continously draw on the screen
+    
+    this.draw = function()
+    {
+        var newX = this.x;
+        for(var i = 0; i < this.numItems; i++)
+        {
+            //Fill big rectangle
+            c.fillStyle = this.colors[i];
+            c.fillRect(newX, this.y, this.itemWidth, this.itemHeight);
+
+            //Border of big rectangle
+            c.lineWidth = 4;
+            c.strokeRect(newX, this.y, this.itemWidth, this.itemHeight);
+
+            
+
+            //Left rectangle (prev)
+
+            //Border left rectangle (prev)
+
+
+            //Right rectangle (next)
+            //Border right rectangle (next)
+
+
+            //Text
+            c.fillStyle = "#000000";
+            c.font = '20px fantasy';
+            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+
+            newX+= (this.itemWidth+50);
+        }
+
+
+
+        
+        c.stroke();
+    }
+    
+    
+    
+
+
+    
 }
 
 
@@ -68,26 +123,25 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     //Call it everytime to continously draw on the screen
     this.draw = function()
     {
-        newY = 0;
+        var newX = this.x;
 
         for(var i = 0; i < this.numItems; i++)
         {
-            
-            //Starting height
-            newX = this.x+(this.itemWidth*i);
 
             //Fill
             c.fillStyle = this.colors[i];
-            c.fillRect(newX, this.y, this.itemWidth-10, this.itemHeight);
+            c.fillRect(newX, this.y, this.itemWidth, this.itemHeight);
 
             //Border
             c.lineWidth = 4;
-            c.strokeRect(newX, this.y, this.itemWidth-10, this.itemHeight);
+            c.strokeRect(newX, this.y, this.itemWidth, this.itemHeight);
 
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
-            c.fillText(this.data[i], newX+(itemWidth/2)-10, (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+
+            newX+=(this.x+10);
         }
 
         
@@ -170,26 +224,25 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     //Call it everytime to continously draw on the screen
     this.draw = function()
     {
-        newY = 0;
+        var newY = this.y;
 
         for(var i = 0; i < this.numItems; i++)
         {
             
-            //Starting height
-            newY = this.y+(this.itemHeight*i);
-
             //Fill
             c.fillStyle = this.colors[i];
-            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight-10);
+            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
 
             //Border
             c.lineWidth = 4;
-            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight-10);
+            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight);
 
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
             c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
+
+            newY+=(this.itemHeight+10);
         }
 
         //Container of stack
@@ -246,11 +299,14 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack(100, 100, 200, 75, 4, [4,3,2,1]);
-stack.draw();
+// var stack = new Stack(100, 100, 200, 75, 4, [4,3,2,1]);
+// stack.draw();
 
 // var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 // queue.draw();
+
+var linkedList = new LinkedList(0, 300, 100, 50, 4, [1,2,3,4]);
+linkedList.draw();
 
 
 
@@ -265,7 +321,8 @@ function animate()
 
     //Repeatedly draw the rectangle on the screen
     //queue.draw();
-    stack.draw();
+    //stack.draw();
+    linkedList.draw();
 
 }
 
