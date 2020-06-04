@@ -15,7 +15,7 @@ canvas.height = 800;
     -------------------------------------------------------------------------------------------
 */
 
-function LinkedList(x, y, itemWidth, itemHeight, numItems, data)
+function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
 {
     this.x = x;
     this.y = y;
@@ -23,6 +23,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, data)
     this.itemHeight = itemHeight;
     this.numItems = numItems;
     this.data = data;
+    this.spacing = spacing;
 
     //Possible colors of the stack items
     this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
@@ -50,21 +51,59 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, data)
 
             
 
-            //Left rectangle (prev)
+            //Left line (prev)
+            c.beginPath();
+            c.moveTo(newX+(this.itemWidth/4), this.y);
+            c.lineTo(newX+(this.itemWidth/4), this.y+this.itemHeight);
+            c.stroke();
 
-            //Border left rectangle (prev)
+            //Right line (next)
+            c.beginPath();
+            c.moveTo(newX+((this.itemWidth/4)*3), this.y);
+            c.lineTo(newX+((this.itemWidth/4)*3), this.y+this.itemHeight);
+            c.stroke();
+
+            //---------------------Top Arrow (next)--------------------------------------
+
+            c.beginPath();
+            //Top Arrow - horizontal line
+            c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6));
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6));
+
+            //Top arrow - top diagonal
+            c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y); //move to tip of arrow
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)); //move back to horizontal
+            
+            //Top arrow - bottom diagonal
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*2)); //draw down to tip of arrow
+
+            c.stroke();
 
 
-            //Right rectangle (next)
-            //Border right rectangle (next)
+            //--------------------Bottom arrow (prev)----------------------------
+            c.beginPath();
 
+            //horizontal line
+            c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6)*5);
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)*5);
+
+            //Top diagonal 
+            c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*4)); //move to tip of arrow
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5)); //move back to horizontal
+
+            //Bottom diagonal -
+            c.moveTo(newX+this.itemWidth+(this.spacing/4)*2, this.y+this.itemHeight);
+            c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5));
+
+            
+            c.stroke();
 
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
             c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
 
-            newX+= (this.itemWidth+50);
+            newX+= (this.itemWidth+spacing);
         }
 
 
@@ -305,7 +344,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 // var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 // queue.draw();
 
-var linkedList = new LinkedList(0, 300, 100, 50, 4, [1,2,3,4]);
+var linkedList = new LinkedList(30, 300, 100, 50, 4, 100, [1,2,3,4]);
 linkedList.draw();
 
 
