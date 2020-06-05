@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/styleLinkedList.css">
     <script src="scriptGeneral.js"></script>
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
-
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <label class="switch">
       
       <input type="checkbox">
-      <span onclick="changeMode()" 
+      <span onclick="keepMode()" 
       class="slider round"></span>
     </label>
   
@@ -63,17 +63,8 @@
             Therefore, no node points to NULL.</p>
        
           
-        </div>    
-        <div id="interview_btn">
-            <div>Frequently asked questions during interviews</div>
-            <a href="#interview_container">
-              <i class="fas fa-arrow-down"></i>
-          </a>
-          
-        </div>
-         
-    </div>
-    <div id="tableContainer">
+        </div>   
+          <div id="tableContainer">
       <div id="complexity">
           <table>
               <thead>
@@ -103,7 +94,17 @@
             
       </div>
     
+    </div> 
+        <div id="interview_btn">
+            <div>Frequently asked questions during interviews</div>
+            <a href="#interview_container">
+              <i class="fas fa-arrow-down"></i>
+          </a>
+          
+        </div>
+         
     </div>
+  
     <div id="animation_container">
     
         <div id="code">

@@ -1,3 +1,4 @@
+var darkMode=false;
 
 // DISAPEARING HEADER
 var prevScrollpos = window.pageYOffset;
@@ -14,6 +15,23 @@ var currentScrollPos = window.pageYOffset;
 //Change mode
 function changeMode() {
   var element = document.body;
-  element.classList.toggle("dark-mode");  
+  element.classList.toggle("dark-mode");
+  darkMode=!darkMode; 
+  
+ 
+}
+function keepMode()
+{ var element = document.body;
+
+  if(darkMode)
+  {
+    element.classList.add("dark-mode");
+  }
+  else {element.classList.remove("dark-mode");}
+  darkMode=!darkMode;
+   
 }
 
+
+window.onload = _ =>
+  keepMode();

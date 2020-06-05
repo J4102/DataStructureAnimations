@@ -9,12 +9,15 @@
 
 body{
   font-family: 'Roboto Mono', monospace;
-  background:url('../images/index_bckgd.png');
+  background:url('../images/elcarito-MHNjEBeLTgw-unsplash.jpg');
  
 
   /* Center and scale the image nicely */
-  /*
+  height:100%;
   background-position: center;
+  /*
+ 
+ 
   background-repeat: no-repeat;
   background-size: cover;
   */
@@ -179,9 +182,12 @@ li a.active {
   border-style: solid;
   
   margin: 1%;
+  margin-left:15%;
+  margin-right:15%;
   padding: 0;
   align-self: center;
   overflow:hidden;
+
 
  
 }
@@ -195,6 +201,7 @@ li a.active {
     align-self:center;
     overflow: hidden;
     padding-top: 30px;
+    padding-left: 10%;
 }
 #complexity
 {
@@ -213,12 +220,16 @@ li a.active {
 }
 #desc
 {
-    position: relative;
+    
     height: 75%;
+    align-self:center;
+    height:auto;
+    display:auto;
 }
 #desc p{
   margin-left:5%;
   margin-right:5%;
+  align-self:center;
 
 }
 #desc header
@@ -227,6 +238,8 @@ li a.active {
     font-size: 20px;
     text-decoration: bold;
     margin-left:3%;
+    padding-top:3%;
+    align-self:center;
    
 }
 #interview_btn 
@@ -376,7 +389,12 @@ td,th
   background-color: black;
   background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
   color: white;
+
  
+}
+.dark-mode #desc_container
+{
+  border:1px solid white;
 }
 .dark-mode ul {
  
@@ -392,11 +410,7 @@ td,th
   color:white;
   opacity:1;
 }
-.dark-mode #desc{
-  border:1px solid white;
-  
-  
-}
+
 .dark-mode #interview_container {
   background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
   border:1px solid white;
