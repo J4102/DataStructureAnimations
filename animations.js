@@ -10,6 +10,95 @@ canvas.height = 1500;
 /*
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
+    ------------------------BINARY TREE DATASTRUCTURE  ----------------------------------------
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+*/
+
+function BinaryTree(x, y, itemRadius, data)
+{
+    this.x = x;
+    this.y = y;
+    this.itemRadius = itemRadius;
+    
+    //Data can only be numbers!
+    this.data = data;
+    this.numItems = this.data.length;
+
+    /* 
+    ----------------------------------------------------------
+    Node Information------------------------------------------
+    -----------------------------------------------------------
+    */
+
+    function Node(x, left, right)
+    {
+        this.x = x;
+        this.left = left;
+        this.right = right;
+    }
+
+    this.insertNode = function(parent, node)
+    {
+        if(parent.x < node.x)
+        {
+            if(parent.right === null)
+            {
+                parent.right = node;
+            }
+            else
+                this.insertNode(parent.right, node);
+        }
+        else
+        {
+            if(parent.left === null)
+            {
+                parent.left = node;
+            }
+            else
+                this.insertNode(parent.left, node);
+        }
+    }
+
+    this.traverse = function(parent)
+    {
+        if(parent == null)
+            return;
+        
+        this.traverse(parent.left);
+        this.traverse(parent.right);
+        console.log(parent.x);
+    }
+
+    var root = new Node(data[0], null, null);
+
+    //[5,3,8,7,4]
+    this.initialize = function()
+    {
+        //data array is inserted into a binary tree structure in the order of items
+        for(var i = 1; i < this.data.length; i++)
+        {
+            this.insertNode(root, new Node(data[i], null, null));
+        }
+
+        this.traverse(root);
+    }
+
+    this.draw = function()
+    {
+        
+    }
+
+    //Will move down the tree and also repeatadly draw the node being highlighted
+    this.insert = function(x)
+    {
+
+    }
+}
+
+/*
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
     ------------------------LINKED LIST (DOUBLY) DATASTRUCTURE  -------------------------------
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
@@ -116,6 +205,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
 
             newX+= (this.itemWidth+spacing);
         }
+
     }
 
     //Remove
@@ -128,8 +218,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
         this.numItems--;
         this.data.pop();
         this.colors.pop();
-        
-        this.draw();
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
@@ -142,8 +230,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
         this.data.push(num);
 
         this.colors.push(this.availColors[this.numItems % 4]);
-
-        this.draw();
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
@@ -381,8 +467,11 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 // var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 // queue.draw();
 
-var linkedList = new LinkedList(30, 300, 100, 50, 4, 100, [1,2,3,4]);
-linkedList.draw();
+// var linkedList = new LinkedList(30, 1000, 100, 50, 4, 100, [1,2,3,4]);
+// linkedList.draw();
+
+var tree = new BinaryTree(100, 100, 50, [10,3,15,17,2,4]);
+tree.initialize();
 
 
 
@@ -393,12 +482,12 @@ function animate()
     requestAnimationFrame(animate);
 
     //Refresh screen
-    c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    c.clearRect(0, 0, canvas.width, canvas.height);
 
     //Repeatedly draw the rectangle on the screen
     //queue.draw();
     //stack.draw();
-    linkedList.draw();
+    //linkedList.draw();
 
 }
 
