@@ -25,6 +25,13 @@ function BinaryTree(x, y, itemRadius, data)
     this.data = data;
     this.numItems = this.data.length;
 
+    root = new Node(data[0], null, null);
+
+    this.getRoot = function()
+    {
+        return root;
+    }
+
     /* 
     ----------------------------------------------------------
     Node Information------------------------------------------
@@ -70,9 +77,6 @@ function BinaryTree(x, y, itemRadius, data)
         console.log(parent.x);
     }
 
-    var root = new Node(data[0], null, null);
-
-    //[5,3,8,7,4]
     this.initialize = function()
     {
         //data array is inserted into a binary tree structure in the order of items
@@ -80,13 +84,23 @@ function BinaryTree(x, y, itemRadius, data)
         {
             this.insertNode(root, new Node(data[i], null, null));
         }
-
-        this.traverse(root);
     }
 
-    this.draw = function()
+    this.draw = function(node,newX, newY, addFactor)
     {
+        if(node == null)
+        {
+            addFactor-=50;
+            return;
+        }
         
+        this.draw(node.left, newX-(100)+addFactor, newY+(100), addFactor+50);
+        this.draw(node.right, newX+(100)-addFactor, newY+(100), addFactor+50);
+
+        c.beginPath();
+        c.arc(newX,newY, itemRadius, 0, Math.PI*2, false);
+        c.strokeStyle = "blue";
+        c.stroke();
     }
 
     //Will move down the tree and also repeatadly draw the node being highlighted
@@ -470,7 +484,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 // var linkedList = new LinkedList(30, 1000, 100, 50, 4, 100, [1,2,3,4]);
 // linkedList.draw();
 
-var tree = new BinaryTree(100, 100, 50, [10,3,15,17,2,4]);
+var tree = new BinaryTree(100, 100, 20, [10,3,15,17,2,4,12]);
 tree.initialize();
 
 
@@ -488,6 +502,7 @@ function animate()
     //queue.draw();
     //stack.draw();
     //linkedList.draw();
+    tree.draw(tree.getRoot(), 500, 100, 0);
 
 }
 
