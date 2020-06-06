@@ -15,11 +15,12 @@ canvas.height = 1500;
     -------------------------------------------------------------------------------------------
 */
 
-function BinaryTree(x, y, itemRadius, data)
+function BinaryTree(x, y, itemRadius, spacing, data)
 {
     this.x = x;
     this.y = y;
     this.itemRadius = itemRadius;
+    this.spacing = spacing;
     
     //Data can only be numbers!
     this.data = data;
@@ -86,21 +87,46 @@ function BinaryTree(x, y, itemRadius, data)
         }
     }
 
-    this.draw = function(node,newX, newY, addFactor)
+    this.draw = function(node,newX, newY, disFactor, lineDirec)
     {
         if(node == null)
         {
-            addFactor-=50;
+            disFactor/=2;
             return;
         }
         
-        this.draw(node.left, newX-(100)+addFactor, newY+(100), addFactor+50);
-        this.draw(node.right, newX+(100)-addFactor, newY+(100), addFactor+50);
+        this.draw(node.left, newX-(this.spacing/disFactor), newY+(this.spacing), disFactor*2, "left");
+        this.draw(node.right, newX+(this.spacing/disFactor), newY+(this.spacing), disFactor*2, "right");
 
+        //Drawing of circle
         c.beginPath();
         c.arc(newX,newY, itemRadius, 0, Math.PI*2, false);
-        c.strokeStyle = "blue";
+        c.fillStyle = "red";
+        c.strokeStyle = "black";
+        c.fill();
         c.stroke();
+
+         //Text
+        c.fillStyle = "#000000";
+        c.font = '20px fantasy';
+        c.fillText(node.x, newX-5, newY+5);
+
+        //Drawing of connecting line
+        if(lineDirec === "left")
+        {
+            c.beginPath();
+            c.moveTo(newX, newY-this.itemRadius);
+            c.lineTo(newX+(this.spacing/(disFactor/2)), newY-this.spacing+this.itemRadius);
+            c.stroke();
+        }
+        else if(lineDirec === "right")
+        {
+            c.beginPath();
+            c.moveTo(newX, newY-this.itemRadius);
+            c.lineTo(newX-(this.spacing/(disFactor/2)), newY-this.spacing+this.itemRadius);
+            c.stroke();
+
+        }
     }
 
     //Will move down the tree and also repeatadly draw the node being highlighted
@@ -484,7 +510,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 // var linkedList = new LinkedList(30, 1000, 100, 50, 4, 100, [1,2,3,4]);
 // linkedList.draw();
 
-var tree = new BinaryTree(100, 100, 20, [10,3,15,17,2,4,12]);
+var tree = new BinaryTree(100, 100, 20, 100, [10,3,15,17,2,4,12, 19,20,21, 1,0]);
 tree.initialize();
 
 
@@ -502,7 +528,7 @@ function animate()
     //queue.draw();
     //stack.draw();
     //linkedList.draw();
-    tree.draw(tree.getRoot(), 500, 100, 0);
+    tree.draw(tree.getRoot(), 500, 100, 1, "");
 
 }
 
