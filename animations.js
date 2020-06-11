@@ -15,7 +15,14 @@ canvas.height = 1500;
     -------------------------------------------------------------------------------------------
 */
 
-function BinaryTree(x, y, itemRadius, spacing, data)
+function Node(x, left, right)
+{
+    this.x = x;
+    this.left = left;
+    this.right = right;
+}
+
+function BinaryTree(x, y, itemRadius,spacing, data)
 {
     this.x = x;
     this.y = y;
@@ -25,6 +32,7 @@ function BinaryTree(x, y, itemRadius, spacing, data)
     //Data can only be numbers!
     this.data = data;
     this.numItems = this.data.length;
+    this.treeHeight = 0;
 
     root = new Node(data[0], null, null);
 
@@ -39,11 +47,22 @@ function BinaryTree(x, y, itemRadius, spacing, data)
     -----------------------------------------------------------
     */
 
-    function Node(x, left, right)
+    //USE Height function and then work on formula 
+    //Spacing / height - this formula for newX ensures no overlap
+    this.getHeight = function(node)
     {
-        this.x = x;
-        this.left = left;
-        this.right = right;
+        if(node == null)
+            return -1;
+
+        leftHeight = this.getHeight(node.left);
+        rightHeight = this.getHeight(node.right);
+
+        if(leftHeight > rightHeight)
+            return leftHeight + 1;
+        else
+            return rightHeight + 1;
+            
+
     }
 
     this.insertNode = function(parent, node)
@@ -68,6 +87,41 @@ function BinaryTree(x, y, itemRadius, spacing, data)
         }
     }
 
+    this.deleteNode = function(parent, x)
+    {
+        if(parent === null)
+        {
+            return null;
+        }
+        else if(x < parent.data)
+        {
+            parent.left = deleteNode(parent.left, x);
+            return parent;
+        }
+        else if(x > parent.x)
+        {
+            parent.right = deleteNode(parent.right, x);
+            return parent;
+        }
+        //Found node
+        else
+        {
+            //No children
+            if(parent.left === null && parent.right === null)
+            {
+                parent = null;
+                return parent;
+            }
+
+            if(parent.left === null)
+            {
+                parent = parent.right;
+
+            }
+        }
+    }
+
+
     this.traverse = function(parent)
     {
         if(parent == null)
@@ -85,6 +139,12 @@ function BinaryTree(x, y, itemRadius, spacing, data)
         {
             this.insertNode(root, new Node(data[i], null, null));
         }
+
+        this.treeHeight = this.getHeight(root);
+        this.spacing = 20*this.treeHeight;
+
+        console.log(this.spacing);
+
     }
 
     this.draw = function(node,newX, newY, disFactor, lineDirec)
@@ -129,11 +189,11 @@ function BinaryTree(x, y, itemRadius, spacing, data)
         }
     }
 
-    //Will move down the tree and also repeatadly draw the node being highlighted
-    this.insert = function(x)
-    {
 
-    }
+
+    
+
+
 }
 
 /*
@@ -510,7 +570,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 // var linkedList = new LinkedList(30, 1000, 100, 50, 4, 100, [1,2,3,4]);
 // linkedList.draw();
 
-var tree = new BinaryTree(100, 100, 20, 100, [10,3,15,17,2,4,12, 19,20,21, 1,0]);
+var tree = new BinaryTree(100, 100, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
 
 
@@ -587,5 +647,13 @@ document.getElementById("insertBtn").addEventListener("click",
     function()
     {
         linkedList.insert("1");
+    }
+);
+
+document.getElementById("insertTreeNodeBtn").addEventListener("click",
+
+    function()
+    {
+        tree.insertNode(tree.getRoot(), new Node(1, null, null));
     }
 );
