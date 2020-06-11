@@ -7,50 +7,33 @@
     <meta name="description" content="Learn what a Stack is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
     <link rel="stylesheet" href="styles/styleStack.css">
+    <script src="scriptGeneral.js"></script>
+    <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
 </head>
 
 <div id="header_container">
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="home.html">Home</a></li>
       <li><a href="linkedlist.html">Linked List</a></li>
-      <li><a href="stack.html" class="active">Stack</a></li>
-      <li><a href="queue.html">Queue</a></li>
+      <li><a href="" class="active">Stack</a></li>
+      <li><a href="Queue.html">Queue</a></li>
       <li><a href="tree.html">Tree</a></li>
       <li><a href="hashtable.html">HashTable</a></li>
     </ul>
-    <h1>Stack</h1>
-  </div>
-  
-  <div id="desc_container">
-    <div id="complexity">
-      <table>
-        <thead>
-          <tr>
-            <th>Function</th>
-            <th>Time Complexity</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr class="whiterow">
-            <th>Insert</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="grayrow">
-            <th>Delete</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="whiterow">
-            <th>Search</th>
-            <th>Θ(n)</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     
+</div>
+  <header>Dark Mode</header>
+  <label class="switch">
+    
+    <input type="checkbox">
+    <span onclick="changeMode()" 
+    class="slider round"></span>
+  </label>
+  <h1>Stack</h1>
+
+  <div id="desc_container">
     <div id="desc">
+      <header>Definition</header>
       <p>
         A Stack is a data structure that can only be changed from one side, the top of the stack. It has 
                two main operations: push (insert) and pop (remove). 
@@ -58,30 +41,105 @@
               the push method will add the element to the top of the stack, while the 
               pop method will also remove the top element. 
       </p>
+      <!--
+      <div class="center">
+      <header>Terms to Know</header>
+      <p>Push-add an element at the top of the stack</p>
+      <p>Pop-remove an element from the top of the stack</p>
+      <p>Top-return the element at the top of the stack</p>
+      </div>
+      -->
     </div>
-    
+      
     <div id="interview_btn">
-      <button class="general_btn">
-        Click to see common interview questions
-      </button>
+      <div>Frequently asked questions during interviews</div>
+     <a href="#interview_container">
+      <i class="fas fa-arrow-down"></i>
+    </a>
+    
+  </div>
+  
+    <div id="tableContainer">
+      <div class="center">Time Complexity</div>
+      <div id="complexity">
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Average Case</th>
+              <th>Worst Case</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="whiterow">
+              <th>Insert</th>
+              <th>Θ(1)</th>
+              <th>Θ(1)</th>
+            </tr>
+            
+            <tr class="grayrow">
+              <th>Delete</th>
+              <th>Θ(1)</th>
+              <th>Θ(1)</th>
+            </tr>
+            
+            <tr class="whiterow">
+              <th>Search</th>
+              <th>Θ(n)</th>
+              <th>Θ(n)</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="center">Terms to Know</div>
+      <div id="methods">
+        <table>
+            <thead>
+              <tr>
+                <th>Stack Terms</th>
+                <th>Definition</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <tr class="whiterow">
+                <th>Push</th>
+                <th>add an element at the top of the stack</th>
+              </tr>
+              
+              <tr class="grayrow">
+                <th>Pop</th>
+                <th>remove an element from the top of the stack</th>
+              </tr>
+              <tr class="whiterow">
+                <th>Top </th>
+                <th>return the element at the top of the stack</th>
+              </tr>
+            </tbody>
+          </table> 
+    </div>
     </div>
   </div>
+
+
+   
+ 
+   
+   
+      
+ 
   
   <div id="animation_container">
     
-    <div id="code">
-      <pre>
-        <code>
-          public static void main(String[] args)
-          {
-            System.out.println("hello!");
-          }
-        </code>
-      </pre>
-    </div>
+    
     
     <div id="animation">
-      
+      <input type="text" id="fname" name="fname" value="">
+      <div class="btn-methods">
+        <button>Push</button>
+        <button>Pop</button>
+      </div>
       
       <canvas>
         

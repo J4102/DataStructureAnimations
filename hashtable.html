@@ -6,51 +6,33 @@
     <title>HashTable</title>
     <meta name="description" content="Learn what a hash table is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
-    <link rel="stylesheet" href="styles/styleHashtable.css">
+    <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
+    <script src="scriptGeneral.js"></script>
 </head>
 
 <div id="header_container">
     <ul>
-      <li><a href="">Home</a></li>
-      <li><a href="">Linked List</a></li>
-      <li><a href="">Stack</a></li>
-      <li><a href="">Queue</a></li>
-      <li><a href="">Binary Search Tree</a></li>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="linkedlist.html">Linked List</a></li>
+      <li><a href="Stack.html">Stack</a></li>
+      <li><a href="Queue.html">Queue</a></li>
+      <li><a href="tree.html">Tree</a></li>
       <li><a href="" class="active">HashTable</a></li>
+      <script src="scriptGeneral.js"></script>
     </ul>
-    <h1>HashTables</h1>
-  </div>
-  
-  <div id="desc_container">
-    <div id="complexity">
-      <table>
-        <thead>
-          <tr>
-            <th>Function</th>
-            <th>Time Complexity</th>
-          </tr>
-        </thead>
-        
-        <tbody>
-          <tr class="whiterow">
-            <th>Insert</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="grayrow">
-            <th>Delete</th>
-            <th>Θ(1)</th>
-          </tr>
-          
-          <tr class="whiterow">
-            <th>Search</th>
-            <th>Θ(1)</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     
+  </div>
+  <header>Dark Mode</header>
+  <label class="switch">
+    
+    <input type="checkbox" id="myCheck">
+    <span onclick="changeMode()" 
+    class="slider round"></span>
+  </label>
+  <h1>HashTables</h1>
+  <div id="desc_container">
     <div id="desc">
+      <header>Definition</header>
       <p>
         A Hash Table is a data structure that stores values associated with a key (key-value pairs). 
         The Hash Table stores these values in an efficient manner by using a hash function. This function
@@ -58,29 +40,62 @@
 
       </p>
     </div>
+
+    <div id="tableContainer">
+      <div id="complexity">
+        <header>Time Complexity</header>
+        <table>
+          <thead>
+            <tr>
+              <th>Function</th>
+              <th>Average Case</th>
+              <th>Worst Case</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="whiterow">
+              <th>Insert</th>
+              <th>Θ(1)</th>
+              <th>O(n)</th>
+            </tr>
+            
+            <tr class="grayrow">
+              <th>Delete</th>
+              <th>Θ(1)</th>
+              <th>O(n)</th>
+            </tr>
+            
+            <tr class="whiterow">
+              <th>Search</th>
+              <th>Θ(1)</th>
+              <th>O(n)</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
     
     <div id="interview_btn">
-      <button class="general_btn">
-        Click to see common interview questions
-      </button>
+      <div>Frequently asked questions during interviews</div>
+      <a href="#interview_container">
+        <i class="fas fa-arrow-down"></i>
+    </a>
+    
     </div>
   </div>
+
   
   <div id="animation_container">
     
-    <div id="code">
-      <pre>
-        <code>
-          public static void main(String[] args)
-          {
-            System.out.println("hello!");
-          }
-        </code>
-      </pre>
-    </div>
+    
     
     <div id="animation">
-      
+      <input type="text" id="fname" name="fname" value="">
+      <div class="btn-methods">
+        <button>Insert</button>
+        <button>Remove</button>
+      </div>
       
       <canvas>
         

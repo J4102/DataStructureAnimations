@@ -6,12 +6,17 @@
 /*----------------------------------------------------- */
 /*--------------- GENERAL------------------------------ */
 /*----------------------------------------------------- */
-html
-{
-  font-family: 'Roboto Mono', monospace;
-  background: url('../images/general_bckg.jpg');
-}
 
+body{
+  font-family: 'Roboto Mono', monospace;
+  background:url('../images/images.jpg');
+
+ 
+
+
+  
+  scroll-behavior: smooth;
+}
 .general_btn {
   background-color: #4CAF50;
   /* Green */
@@ -20,25 +25,37 @@ html
   padding: 15px 32px;
   text-align: center;
   font-size: 16px;
-  
+  cursor: pointer;
   border-color: #363636;
   border-style:solid
 }
 
 p
 {
-  margin: 1%;
+  
+  font-size: 16px;
 }
+
 
 /*----------------------------------------------------- */
 /*--------------- HEADER CONTAINER -------------------- */
 /*----------------------------------------------------- */
 #header_container
 {
-  height: 18vh;
+
+  width:50%;
+  top:0;
+  margin-left: 25%;
   border-color: #363636;
   border-style: solid;
+  text-align: center;
+  display:block;
+  position:sticky;
+  transition: top 0.3s ease-in-out;
+  overflow:visible;
+  
 }
+
 
 h1
 {
@@ -46,19 +63,88 @@ h1
 }
 
 /*----------------------------------------------------- */
+/*--------------- SLIDER--0-------------------- */
+/*----------------------------------------------------- */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+/*----------------------------------------------------- */
 /*--------------- NAVIGATION BAR--0-------------------- */
 /*----------------------------------------------------- */
 ul {
-  list-style-type: none;
+  list-style-type:none ;
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: 1px solid #e7e7e7;
   background-color: #f3f3f3;
+ 
+ 
 }
 
 li {
   float: left;
+  
 }
 
 li a {
@@ -84,39 +170,121 @@ li a.active {
 /*----------------------------------------------------- */
 #desc_container
 {
-  height: 55vh;
-  display: flex;
+  height: auto;
+  display: auto;
   border-color: #363636;
   border-style: solid;
   
   margin: 1%;
+  margin-left:15%;
+  margin-right:15%;
   padding: 0;
   align-self: center;
+  overflow:hidden;
+
+  background-color:rgba(255,255,255,.5);
+
+
+
+ 
+}
+.center
+{
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+}
+
+
+#tableContainer
+{
+    height:auto;
+    display:auto;
+    text-align: center;
+    align-self:center;
+    overflow: hidden;
+  
+}
+#complexity
+{
+  
+ width:100%;
+ height:100%;
+ 
+ 
+
+ 
+
+}
+
+#desc
+{
+    
+    height: 75%;
+    align-self:center;
+    height:auto;
+    display:auto;
+ 
+}
+#desc p{
+  margin-left:5%;
+  margin-right:5%;
+  align-self:center;
+
+}
+#desc header
+{
+    color:black;
+    font-size: 20px;
+    text-decoration: bold;
+    margin-left:3%;
+    padding-top:3%;
+    align-self:center;
+   
+}
+#interview_btn 
+{
+  
+  width:10px;
+  margin:1%;
   
 }
 
-#complexity
-{
-  width: 25%;
-}
-#desc
-{
-  width: 75%;
-}
-#interview_btn
-{
-  width: 10%;
-  align-self: center;
-  margin: 1%;
-}
+#interview_btn  div{
 
+    background: black;
+    color: white;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: visibility 0s, opacity 0.5s linear; 
+    transition: visibility 0s, opacity 0.5s linear;
+    text-align: center;
+   }
+   /* Hover on Parent Container */
+   #interview_btn:hover{
+    cursor: pointer;
+   }
+   
+   #interview_btn:hover div{
+    width: 150px;
+    padding: 8px 15px;
+    visibility: visible;
+    opacity: 0.7; 
+   }
+   .fa-arrow-down
+   {
+     font-size:30px;
+     color:#4CAF50;
+   }
 /*----------------------------------------------------- */
 /*--------------- ANIMATION CONTAINER ----------------- */
 /*----------------------------------------------------- */
 #animation_container
 {
-  height: 50vh;
-  display: flex;
+    height:100vh;
+    display:flex;
   border-color: #363636;
   border-style: solid;
   
@@ -128,15 +296,41 @@ li a.active {
 
 #code
 {
+  float:left;
   width: 30%;
+  background-color: white;
+  border: 1px solid black;
+  
+ white-space:pre-wrap;
+  
+  
 }
 
 #animation
 {
-  width: 70%;
+    float:right;
+  width: 100%;
   background-color:#BBBBBB;
 }
+.btn-methods button {
+  background-color: #4CAF50;
+  border: 1px solid green; 
+  color: white; 
+  padding: 10px 24px; 
+  cursor: pointer; 
+  width: 20%; 
+  display: block; /* Make the buttons appear below each other */
+  
+}
 
+.btn-methods button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-methods button:hover {
+  background-color: #3e8e41;
+}
 /*----------------------------------------------------- */
 /*--------------- INTERVIEW CONTAINER ----------------- */
 /*----------------------------------------------------- */
@@ -145,7 +339,8 @@ li a.active {
   border-color: #363636;
   border-style: solid;
   margin-top: 1vh;
-  
+  float :left;
+  width:98%;
   margin: 1%;
   padding: 0;
   
@@ -157,9 +352,11 @@ li a.active {
 
 table
 {
-  margin: 3%;
+  margin: 2%;
   border-color: #363636;
-  border-style:solid
+  border-style:solid;
+  margin-left:auto; 
+  margin-right:auto;
 }
 
 thead
@@ -171,7 +368,7 @@ td,th
 {   
   border: 1px solid #FFFFFF;
   padding: 2vw;
-  text-align: left;
+  text-align: center;
 }
 
 .grayrow
@@ -184,4 +381,40 @@ td,th
 {
   background-color: #F1F1F1;
   color: #363636;
+}
+/*----------------------------------------------------- */
+/*--------------- Dark Mode--0-------------------- */
+/*----------------------------------------------------- */
+
+body.dark-mode 
+{
+  background-color: black;
+  background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
+  color: white;
+
+ 
+}
+.dark-mode #desc_container
+{
+  border:1px solid white;
+  background-color:rgba(0,0,0,0.5);
+}
+.dark-mode ul {
+ 
+  background-color:black;
+  color:white;
+ 
+ 
+}
+.dark-mode li a {
+ color:white;
+}
+.dark-mode #desc header{
+  color:white;
+  opacity:1;
+}
+
+.dark-mode #interview_container {
+  background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
+  border:1px solid white;
 }
