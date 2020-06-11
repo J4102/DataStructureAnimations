@@ -54,73 +54,71 @@
       <i class="fas fa-arrow-down"></i>
   </a>
   </div>
-</div>
-<div id="tableContainer">
-  <div id="complexity">
-    <table>
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Time Complexity</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr class="whiterow">
-          <th>Insert</th>
-          <th>Θ(1)</th>
-        </tr>
-        
-        <tr class="grayrow">
-          <th>Delete</th>
-          <th>Θ(1)</th>
-        </tr>
-        
-        <tr class="whiterow">
-          <th>Search</th>
-          <th>Θ(n)</th>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="methods">
-    <table>
+  <div id="tableContainer">
+    <header>Complexity</header>
+    <div id="complexity">
+      <table>
         <thead>
           <tr>
-            <th>Queue Terms</th>
-            <th>Definition</th>
+            <th>Function</th>
+            <th>Average Case</th>
+            <th>Worst Case</th>
           </tr>
         </thead>
         
         <tbody>
           <tr class="whiterow">
-            <th>Enqueue</th>
-            <th>insert an element at the tail of the queue</th>
+            <th>Insert</th>
+            <th>Θ(1)</th>
+            <th>O(1)</th>
           </tr>
           
           <tr class="grayrow">
-            <th>Dequeue </th>
-            <th>remove an element at the head of the queue</th>
+            <th>Delete</th>
+            <th>Θ(1)</th>
+            <th>O(1)</th>
+          </tr>
+          
+          <tr class="whiterow">
+            <th>Search</th>
+            <th>Θ(n)</th>
+            <th>O(1)</th>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div id="methods">
+      <header>Terms to Know</header>
+      <table>
+          <thead>
+            <tr>
+              <th>Queue Terms</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr class="whiterow">
+              <th>Enqueue</th>
+              <th>insert an element at the tail of the queue</th>
+            </tr>
+            
+            <tr class="grayrow">
+              <th>Dequeue </th>
+              <th>remove an element at the head of the queue</th>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  </div>
 </div>
-</div>
+
 
   
   
   <div id="animation_container">
     
-    <div id="code">
-      <pre>
-        <code>
-          public static void main(String[] args)
-          {
-            System.out.println("hello!");
-          }
-        </code>
-      </pre>
-    </div>
+   
     
     <div id="animation">
       <input type="text" id="fname" name="fname" value="">

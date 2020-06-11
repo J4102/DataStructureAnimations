@@ -28,9 +28,9 @@
     <header>Dark Mode</header>
     <label class="switch">
       
-      <input type="checkbox">
-      <span onclick="keepMode()" 
-      class="slider round"></span>
+      <input type="checkbox" >
+      <span onclick="changeMode()" autocomplete="off"
+      class="slider round"  ></span>
     </label>
   
     
@@ -64,13 +64,16 @@
        
           
         </div>   
-          <div id="tableContainer">
+          <div id="tableContainer"></div>
+           
       <div id="complexity">
           <table>
+           
               <thead>
                 <tr>
                   <th>Function</th>
-                  <th>Time Complexity</th>
+                  <th>Average Case</th>
+                  <th>Worst Case</th>
                 </tr>
               </thead>
               
@@ -78,23 +81,27 @@
                 <tr class="whiterow">
                   <th>Insert</th>
                   <th>Θ(1)</th>
+                  <th>Θ(1)</th>
                 </tr>
                 
                 <tr class="grayrow">
                   <th>Delete</th>
+                  <th>Θ(1)</th>
                   <th>Θ(1)</th>
                 </tr>
                 
                 <tr class="whiterow">
                   <th>Search</th>
                   <th>Θ(n)</th>
+                  <th>Θ(n)</th>
                 </tr>
               </tbody>
+              
             </table>
             
       </div>
     
-    </div> 
+    
         <div id="interview_btn">
             <div>Frequently asked questions during interviews</div>
             <a href="#interview_container">
@@ -107,17 +114,7 @@
   
     <div id="animation_container">
     
-        <div id="code">
-          <pre>
-            <code>
-              public static void main(String[] args)
-              {
-                System.out.println("hello!");
-              }
-            </code>
-          </pre>
-        </div>
-        
+       
         <div id="animation">
           
           <input type="text" id="fname" name="fname" value="">

@@ -9,18 +9,12 @@
 
 body{
   font-family: 'Roboto Mono', monospace;
-  background:url('../images/elcarito-MHNjEBeLTgw-unsplash.jpg');
+  background:url('../images/images.jpg');
+
  
 
-  /* Center and scale the image nicely */
-  height:100%;
-  background-position: center;
-  /*
- 
- 
-  background-repeat: no-repeat;
-  background-size: cover;
-  */
+
+  
   scroll-behavior: smooth;
 }
 .general_btn {
@@ -188,8 +182,17 @@ li a.active {
   align-self: center;
   overflow:hidden;
 
+  background-color:rgba(255,255,255,.5);
+
+
 
  
+}
+.center
+{
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
 }
 
 
@@ -200,24 +203,20 @@ li a.active {
     text-align: center;
     align-self:center;
     overflow: hidden;
-    padding-top: 30px;
-    padding-left: 10%;
+  
 }
 #complexity
 {
-   float:left;
- width:50%;
- align-self:center;
+  
+ width:100%;
+ height:100%;
+ 
+ 
+
  
 
 }
-#methods
-{
-    float:right;
-   width:50%;
-   align-self:center;
-   
-}
+
 #desc
 {
     
@@ -225,6 +224,7 @@ li a.active {
     align-self:center;
     height:auto;
     display:auto;
+ 
 }
 #desc p{
   margin-left:5%;
@@ -309,7 +309,7 @@ li a.active {
 #animation
 {
     float:right;
-  width: 70%;
+  width: 100%;
   background-color:#BBBBBB;
 }
 .btn-methods button {
@@ -352,9 +352,11 @@ li a.active {
 
 table
 {
-  margin: 3%;
+  margin: 2%;
   border-color: #363636;
-  border-style:solid
+  border-style:solid;
+  margin-left:auto; 
+  margin-right:auto;
 }
 
 thead
@@ -366,7 +368,7 @@ td,th
 {   
   border: 1px solid #FFFFFF;
   padding: 2vw;
-  text-align: left;
+  text-align: center;
 }
 
 .grayrow
@@ -384,7 +386,7 @@ td,th
 /*--------------- Dark Mode--0-------------------- */
 /*----------------------------------------------------- */
 
-.dark-mode 
+body.dark-mode 
 {
   background-color: black;
   background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
@@ -395,6 +397,7 @@ td,th
 .dark-mode #desc_container
 {
   border:1px solid white;
+  background-color:rgba(0,0,0,0.5);
 }
 .dark-mode ul {
  

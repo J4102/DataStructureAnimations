@@ -1,4 +1,3 @@
-var darkMode=false;
 
 // DISAPEARING HEADER
 var prevScrollpos = window.pageYOffset;
@@ -12,26 +11,69 @@ var currentScrollPos = window.pageYOffset;
   prevScrollpos = currentScrollPos;
 }
 
-//Change mode
-function changeMode() {
-  var element = document.body;
-  element.classList.toggle("dark-mode");
-  darkMode=!darkMode; 
-  
+/////////////////////////////////////////Change mode
+// check for saved 'darkMode' in localStorage
+let darkMode = localStorage.getItem('darkMode');
+
+
+const enableDarkMode = () => {
+
+  document.body.classList.add('dark-mode');
+
+  localStorage.setItem('darkMode', 'enabled');
+}
+
+const disableDarkMode = () => {
+
+  document.body.classList.remove('dark-mode');
  
+  localStorage.setItem('darkMode', null);
 }
-function keepMode()
-{ var element = document.body;
 
-  if(darkMode)
-  {
-    element.classList.add("dark-mode");
+// If the user already visited and enabled darkMode
+// start things off with it on
+
+
+function changeMode() {
+
+  darkMode = localStorage.getItem('darkMode'); 
+  
+
+  if (darkMode !== 'enabled') {
+    enableDarkMode();
+  
+  } else {  
+    disableDarkMode(); 
   }
-  else {element.classList.remove("dark-mode");}
-  darkMode=!darkMode;
-   
+};
+///////////////////////Keep checkbox the same after refresh
+function check()
+{
+  var cb=document.getElementsByClassName("slider round");
+  if( dark==='enabled')
+  {
+    document.body.classList.add("input:checked + .slider ");
+  }
+  else
+  {
+    document.body.classList.add(".slider:before");
+  }
 }
-
-
-window.onload = _ =>
-  keepMode();
+window.onload=_=>
+ {
+   if(darkMode==='enabled')
+  {
+    enableDarkMode();
+    
+    
+  }
+  var elements = document.getElementsByTagName("INPUT");
+for (var inp of elements) {
+    if (inp.type === "checkbox"&&darkMode==='enabled')
+        inp.checked = true;
+}
+  
+  
+  
+  
+}

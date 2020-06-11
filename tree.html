@@ -46,14 +46,14 @@
              left child contains only nodes with values less than the parent node, whereas the right child only contains nodes with values greater than the parent node. 
              Also there are no duplicates allowed.   
       </p>
-
+      <!--
       <header>Time Complexity</header>
       <p>Insert - Θ(log(n))</p>
       <p>
         Delete - Θ(log(n))
       </p>
       <p>Search - Θ(log(n))</p>
-  
+  -->
     </div>
     <div id="tableContainer">
       <div id="complexity">
@@ -61,7 +61,8 @@
           <thead>
             <tr>
               <th>Function</th>
-              <th>Time Complexity</th>
+              <th>Average Case</th>
+              <th>Worst Case</th>
             </tr>
           </thead>
           
@@ -69,15 +70,18 @@
             <tr class="whiterow">
               <th>Insert</th>
               <th>Θ(log(n))</th>
+              <th>Θ(log(n))</th>
             </tr>
             
             <tr class="grayrow">
               <th>Delete</th>
               <th>Θ(log(n))</th>
+              <th>Θ(log(n))</th>
             </tr>
             
             <tr class="whiterow">
               <th>Search</th>
+              <th>Θ(log(n))</th>
               <th>Θ(log(n))</th>
             </tr>
           </tbody>
@@ -139,16 +143,7 @@
 
   <div id="animation_container">
     
-    <div id="code">
-      <pre>
-        <code>
-          public static void main(String[] args)
-          {
-            System.out.println("hello!");
-          }
-        </code>
-      </pre>
-    </div>
+    
     
     <div id="animation">
       <input type="text" id="fname" name="fname" value="">
