@@ -1,11 +1,19 @@
 // getting a reference to our HTML element
-const canvas = document.querySelector('canvas')
+//const canvas = document.querySelector('canvas')
+
+
+var canvas = document.getElementById("canvas");
 
 // getting 2D context of canvas
-const c = canvas.getContext('2d')
+const c = canvas.getContext('2d');
 
-canvas.width = 1500;
-canvas.height = 1500;
+canvas.height = canvas.getBoundingClientRect().height;
+canvas.width = canvas.getBoundingClientRect().width;
+
+
+
+console.log("yoyo" + canvas.getBoundingClientRect().width);
+console.log(canvas.getBoundingClientRect().height);
 
 /*
     -------------------------------------------------------------------------------------------
@@ -561,19 +569,134 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-// var stack = new Stack(100, 100, 200, 75, 4, [4,3,2,1]);
-// stack.draw();
+var stack = new Stack(100, 100, 200, 75, 4, [4,3,2,1]);
 
-// var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
-// queue.draw();
+var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
-// var linkedList = new LinkedList(30, 1000, 100, 50, 4, 100, [1,2,3,4]);
-// linkedList.draw();
+var linkedList = new LinkedList(30, canvas.height/2, 100, 50, 4, 100, [1,2,3,4]);
 
-var tree = new BinaryTree(100, 100, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
+var tree = new BinaryTree(100, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
 
+var mode = "";
+var webPage = window.location.pathname
 
+
+//LINKED LIST --------------------------------------------------------------
+if(webPage.includes("linkedlist.html"))
+{
+    //LINKED LIST------------------------------------------------------------
+    document.getElementById("deleteBtn").addEventListener("click",
+
+    function()
+    {
+        
+        linkedList.delete();
+    }
+    );
+
+    document.getElementById("insertBtn").addEventListener("click",
+
+    function()
+    {
+        if(checkValidInput())
+        {
+            linkedList.insert(document.getElementById("inputField").value);
+        }
+        else
+        {
+            window.alert("Linked List: Please enter a single digit number!")
+        }
+    }
+    );
+
+    mode = "linked_list";
+
+    
+}
+
+//QUEUE --------------------------------------------------------------
+else if(webPage.includes("Queue.html"))
+{
+    document.getElementById("dequeueBtn").addEventListener("click",
+
+    function()
+    {
+        queue.dequeue();
+    }
+    );
+
+    document.getElementById("enqueueBtn").addEventListener("click",
+
+    function()
+    {
+        if(checkValidInput())
+        {
+            document.getElementById("inputField").value
+        }
+        else
+        {
+            window.alert("QUEUE: Please enter a single digit number!")
+        }
+    }
+    );
+
+    mode = "queue";
+}
+
+else if(webPage.includes("hashtable.html"))
+{
+    mode = "hash_table";
+}
+else if(webPage.includes("Stack.html"))
+{
+    document.getElementById("popBtn").addEventListener("click",
+
+    function()
+    {
+        stack.pop();
+    }
+    );
+
+    document.getElementById("pushBtn").addEventListener("click",
+
+    function()
+    {
+        if(checkValidInput())
+        {
+            stack.push(document.getElementById("inputField").value);
+        }
+        else
+        {
+            window.alert("Stack: Please enter a single digit number!")
+        }
+    }
+    );
+
+
+    mode = "stack";
+}
+else
+{
+    document.getElementById("insertTreeNodeBtn").addEventListener("click",
+
+        function()
+        {
+            if(checkValidInput())
+            {
+                tree.insertNode(tree.getRoot(), new Node(document.getElementById("inputField").value, null, null));
+            }
+            else
+            {
+                window.alert("Please enter a single digit number!")
+            }
+        }
+
+        
+    );
+
+    mode = "tree";
+}
 
 
 function animate()
@@ -583,16 +706,40 @@ function animate()
 
     //Refresh screen
     c.clearRect(0, 0, canvas.width, canvas.height);
+    
+    switch(mode)
+    {
+        case "linked_list":
+            linkedList.draw();
+            break;
+        case "queue":
+            queue.draw();
+            break;
+        case "stack":
+            stack.draw();
+            break;   
+        case "tree":
+            console.log("tree draw");
+            tree.draw(tree.getRoot(), 500, 100, 1, "");
+            break;
+    }
 
     //Repeatedly draw the rectangle on the screen
     //queue.draw();
     //stack.draw();
     //linkedList.draw();
-    tree.draw(tree.getRoot(), 500, 100, 1, "");
+    //tree.draw(tree.getRoot(), 500, 100, 1, "");
 
 }
 
 animate();
+
+//Check if input size is 1 umber and is a number
+function checkValidInput()
+{
+    var field = document.getElementById("inputField").value;
+    return field.length == 1 && !isNaN(field);
+}
 
 
 /*
@@ -602,58 +749,6 @@ animate();
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
 */
-document.getElementById("popBtn").addEventListener("click",
 
-    function()
-    {
-        stack.pop();
-    }
-);
 
-document.getElementById("pushBtn").addEventListener("click",
-
-    function()
-    {
-        stack.push("yoyo");
-    }
-);
-
-document.getElementById("dequeueBtn").addEventListener("click",
-
-    function()
-    {
-        queue.dequeue();
-    }
-);
-
-document.getElementById("enqueueBtn").addEventListener("click",
-
-    function()
-    {
-        queue.enqueue("1");
-    }
-);
-
-document.getElementById("deleteBtn").addEventListener("click",
-
-    function()
-    {
-        linkedList.delete();
-    }
-);
-
-document.getElementById("insertBtn").addEventListener("click",
-
-    function()
-    {
-        linkedList.insert("1");
-    }
-);
-
-document.getElementById("insertTreeNodeBtn").addEventListener("click",
-
-    function()
-    {
-        tree.insertNode(tree.getRoot(), new Node(1, null, null));
-    }
-);
+//-------------------------------------------------------------------------

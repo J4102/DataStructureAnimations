@@ -6,7 +6,6 @@
     <title>LinkedList</title>
     <meta name="description" content="Learn what a linked list is">
     <link rel="stylesheet" href="styles/styleGeneral.css">
-    <link rel="stylesheet" href="styles/styleLinkedList.css">
     <script src="scriptGeneral.js"></script>
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://livejs.com/live.js"></script>
@@ -117,16 +116,19 @@
        
         <div id="animation">
           
-          <input type="text" id="fname" name="fname" value="">
           <div class="btn-methods">
-            <button>Insert</button>
-            <button>Remove</button>
+            <input type="text" id="inputField" name="inputField" value="">
+            <button id="insertBtn">Insert</button>
+            <button id="deleteBtn">Remove</button>
           </div>
-          <canvas>
+          <canvas id="canvas">
             
           </canvas>
         </div>
-      </div>
+    </div>
+
+    <script src="animations.js"></script>
+    
   <div id="interview_container">
           <p>
             Common Interview Questions here:
