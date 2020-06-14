@@ -1,19 +1,19 @@
 // getting a reference to our HTML element
-//const canvas = document.querySelector('canvas')
+const canvas = document.querySelector('canvas')
 
-
-var canvas = document.getElementById("canvas");
+console.log("hi");
+//var canvas = document.getElementById("canvas");
 
 // getting 2D context of canvas
 const c = canvas.getContext('2d');
 
-canvas.height = canvas.getBoundingClientRect().height;
-canvas.width = canvas.getBoundingClientRect().width;
+canvas.height = document.getElementById("animation_container").clientHeight;
+canvas.width = document.getElementById("animation_container").clientWidth;
+
+console.log(canvas.height);
+console.log(canvas.width);
 
 
-
-console.log("yoyo" + canvas.getBoundingClientRect().width);
-console.log(canvas.getBoundingClientRect().height);
 
 /*
     -------------------------------------------------------------------------------------------
@@ -212,7 +212,7 @@ function BinaryTree(x, y, itemRadius,spacing, data)
     -------------------------------------------------------------------------------------------
 */
 
-function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
+function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
 {
     this.x = x;
     this.y = y;
@@ -221,6 +221,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
     this.numItems = numItems;
     this.data = data;
     this.spacing = spacing;
+    this.mode = mode;
 
     //Possible colors of the stack items
     this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
@@ -275,41 +276,61 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, data)
         newX = this.x;
         for(var i = 0; i < this.numItems-1; i++)
         {
-            //---------------------Top Arrow (next)--------------------------------------
 
-            c.beginPath();
-            //Top Arrow - horizontal line
-            c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6));
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6));
-
-            //Top arrow - top diagonal
-            c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y); //move to tip of arrow
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)); //move back to horizontal
+            //Middle arrow
+            if(mode === "singly")
+            {
+                c.beginPath();
+                //Top Arrow - horizontal line
+                c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/2));
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/2));
+    
+                //Top arrow - top diagonal
+                c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+(this.itemHeight/4)); //move to tip of arrow
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/2)); //move back to horizontal
+                
+                //Top arrow - bottom diagonal
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/4)*3)); //draw down to tip of arrow
+    
+                c.stroke();
+            }
             
-            //Top arrow - bottom diagonal
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*2)); //draw down to tip of arrow
+            else
+            {
+                //---------------------Top Arrow (next)--------------------------------------
+                c.beginPath();
+                //Top Arrow - horizontal line
+                c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6));
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6));
+    
+                //Top arrow - top diagonal
+                c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y); //move to tip of arrow
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)); //move back to horizontal
+                
+                //Top arrow - bottom diagonal
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*2)); //draw down to tip of arrow
+    
+                c.stroke();
 
-            c.stroke();
+                //--------------------Bottom arrow (prev)----------------------------
+                c.beginPath();
 
+                //horizontal line
+                c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6)*5);
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)*5);
 
-            //--------------------Bottom arrow (prev)----------------------------
-            
-            c.beginPath();
+                //Top diagonal 
+                c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*4)); //move to tip of arrow
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5)); //move back to horizontal
 
-            //horizontal line
-            c.moveTo(newX+this.itemWidth+(this.spacing/4), this.y+(this.itemHeight/6)*5);
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)*3), this.y+(this.itemHeight/6)*5);
+                //Bottom diagonal -
+                c.moveTo(newX+this.itemWidth+(this.spacing/4)*2, this.y+this.itemHeight);
+                c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5));
 
-            //Top diagonal 
-            c.moveTo(newX+this.itemWidth+((this.spacing/4)*2), this.y+((this.itemHeight/6)*4)); //move to tip of arrow
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5)); //move back to horizontal
+                
+                c.stroke();
 
-            //Bottom diagonal -
-            c.moveTo(newX+this.itemWidth+(this.spacing/4)*2, this.y+this.itemHeight);
-            c.lineTo(newX+this.itemWidth+((this.spacing/4)), this.y+((this.itemHeight/6)*5));
-
-            
-            c.stroke();
+            }
 
             newX+= (this.itemWidth+spacing);
         }
@@ -517,10 +538,10 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 
         //Container of stack
         c.beginPath();
-        c.moveTo(this.x-10, this.y-20);
-        c.lineTo(this.x-10, newY+this.itemHeight);
-        c.lineTo(this.x+this.itemWidth+10, newY+this.itemHeight);
-        c.lineTo(this.x+this.itemWidth+10, this.y-20);
+        c.moveTo(this.x-10, this.y-30);
+        c.lineTo(this.x-10, newY+5);
+        c.lineTo(this.x+this.itemWidth+10, newY+5);
+        c.lineTo(this.x+this.itemWidth+10, this.y-30);
         c.stroke();
     }
 
@@ -569,13 +590,15 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack(100, 100, 200, 75, 4, [4,3,2,1]);
+var stack = new Stack(canvas.width/2.5, 100, 200, 75, 4, [4,3,2,1]);
 
 var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
-var linkedList = new LinkedList(30, canvas.height/2, 100, 50, 4, 100, [1,2,3,4]);
+var linkedListDoubly = new LinkedList(canvas.width/8, 100, 100, 50, 4, 100, "doubly",  [1,2,3,4]);
+var linkedListSingly = new LinkedList(canvas.width/8, 200, 100, 50, 4, 100, "singly",  [1,2,3,4]);
 
-var tree = new BinaryTree(100, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
+//It doesn't matter what x & y for tree is
+var tree = new BinaryTree(0, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
 
 var mode = "";
@@ -591,7 +614,8 @@ if(webPage.includes("linkedlist.html"))
     function()
     {
         
-        linkedList.delete();
+        linkedListDoubly.delete();
+        linkedListSingly.delete();
     }
     );
 
@@ -601,7 +625,8 @@ if(webPage.includes("linkedlist.html"))
     {
         if(checkValidInput())
         {
-            linkedList.insert(document.getElementById("inputField").value);
+            linkedListDoubly.insert(document.getElementById("inputField").value);
+            linkedListSingly.insert(document.getElementById("inputField").value);
         }
         else
         {
@@ -691,7 +716,6 @@ else
                 window.alert("Please enter a single digit number!")
             }
         }
-
         
     );
 
@@ -710,7 +734,8 @@ function animate()
     switch(mode)
     {
         case "linked_list":
-            linkedList.draw();
+            linkedListDoubly.draw();
+            linkedListSingly.draw();
             break;
         case "queue":
             queue.draw();
@@ -719,10 +744,10 @@ function animate()
             stack.draw();
             break;   
         case "tree":
-            console.log("tree draw");
-            tree.draw(tree.getRoot(), 500, 100, 1, "");
+            tree.draw(tree.getRoot(), canvas.width/2, 0, 1, "");
             break;
     }
+
 
     //Repeatedly draw the rectangle on the screen
     //queue.draw();
