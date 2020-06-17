@@ -328,15 +328,9 @@ li a.active {
 /*----------------------------------------------------- */
 #animation_container
 {
-<<<<<<< HEAD
   height:75vh;
   display:flex;
   border-color: #363636;
-=======
-    height:100vh;
-    display:flex;
-  border-color:white;
->>>>>>> layouts
   border-style: solid;
   
   margin: 1%;
@@ -361,7 +355,6 @@ li a.active {
 {
   float:right;
   width: 100%;
-<<<<<<< HEAD
   background-image: url('../images/animation_bckg.jpg');;
 }
 
@@ -374,10 +367,6 @@ li a.active {
   padding: 1%;
   display: inline-flex;
 
-=======
-  background-color:#BBBBBB;
-  background: url(../images/general_bckg.jpg);
->>>>>>> layouts
 }
 .btn-methods button {
   background-color: #4CAF50;
