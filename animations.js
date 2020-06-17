@@ -10,10 +10,18 @@ const c = canvas.getContext('2d');
 canvas.height = document.getElementById("animation_container").clientHeight;
 canvas.width = document.getElementById("animation_container").clientWidth;
 
-console.log(canvas.height);
-console.log(canvas.width);
+//To match up canvas with animation's dimensions
+const animation = document.getElementById("animation_container");
 
+animation.sethe
 
+if(animation == null)
+{
+    console.log("yet")
+}
+/*
+
+*/
 
 /*
     -------------------------------------------------------------------------------------------
@@ -236,6 +244,10 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     
     this.draw = function()
     {
+        c.fillStyle = "#000000";
+        c.font = '20px fantasy';
+
+
         var newX = this.x;
         for(var i = 0; i < this.numItems; i++)
         {
@@ -265,11 +277,13 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
-            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+            c.fillText(this.data[i], newX+(this.itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
 
             c.stroke();
 
             newX+= (this.itemWidth+spacing);
+
+            
         }
 
         //Drawing arrows btn the rectangles
@@ -333,6 +347,8 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             }
 
             newX+= (this.itemWidth+spacing);
+
+            this.resize(newX);
         }
 
     }
@@ -355,6 +371,11 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     //Add
     this.insert = function(num)
     {
+        if(this.numItems === 8)
+        {
+            window.alert("Linked List: Due to the window size, you may not insert more than 8 items!");
+            return;
+        }
         this.numItems++;
         this.data.push(num);
 
@@ -364,7 +385,15 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
         snd.play();
     }
     
-    
+    this.resize = function(x)
+    {
+        if(this.itemWidth+x > animation.clientWidth)
+        {
+            this.itemWidth-= (this.itemWidth/4);
+            this.itemHeight-= (this.itemHeight/4);
+            this.spacing-=(this.spacing/4);
+        }
+    }
     
 
 
@@ -430,9 +459,11 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
-            c.fillText(this.data[i], newX+(itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
+            c.fillText(this.data[i], newX+(this.itemWidth/2), (this.y + this.itemHeight/2), this.itemWidth, this.itemHeight);
 
             newX+=(this.x+10);
+
+            this.resize(newX)
         }
 
         
@@ -442,7 +473,7 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     //Remove
     this.dequeue = function()
     {
-
+        
         if(this.numItems == 0)
             return;
         
@@ -459,6 +490,12 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     //Add
     this.enqueue = function(num)
     {
+        if(this.numItems === 12)
+        {
+            window.alert("Queue: Due to the window size, you may not enqueue more than 12 items!");
+            return;
+        }
+
         this.numItems++;
         this.data.unshift(num);
 
@@ -468,6 +505,16 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
+    }
+
+    this.resize = function(x)
+    {
+        if(this.itemWidth+x > animation.clientWidth)
+        {
+            this.itemWidth-= (this.itemWidth/4);
+            this.itemHeight-= (this.itemHeight/4);
+            this.spacing-=(this.spacing/4);
+        }
     }
 }
 
@@ -515,11 +562,11 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     //Call it everytime to continously draw on the screen
     this.draw = function()
     {
-        var newY = this.y;
+        var newY = this.y-this.itemHeight;
 
-        for(var i = 0; i < this.numItems; i++)
+        for(var i = this.numItems-1; i >= 0; i--)
         {
-            
+               
             //Fill
             c.fillStyle = this.colors[i];
             c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
@@ -533,15 +580,17 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
             c.font = '20px fantasy';
             c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
 
-            newY+=(this.itemHeight+10);
+            newY-=(this.itemHeight+10);
+
+            this.resize(newY);
         }
 
         //Container of stack
         c.beginPath();
-        c.moveTo(this.x-10, this.y-30);
-        c.lineTo(this.x-10, newY+5);
+        c.moveTo(this.x-10, newY+5);
+        c.lineTo(this.x-10, this.y+10);
+        c.lineTo(this.x+this.itemWidth+10, this.y+10);
         c.lineTo(this.x+this.itemWidth+10, newY+5);
-        c.lineTo(this.x+this.itemWidth+10, this.y-30);
         c.stroke();
     }
 
@@ -552,7 +601,6 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
             return;
         
         this.numItems--;
-        this.y+=this.itemHeight;
 
         this.data.shift();
         this.colors.shift();
@@ -567,7 +615,6 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     this.push = function(num)
     {
         this.numItems++;
-        this.y-=this.itemHeight;
 
         this.data.unshift(num);
         this.colors.unshift(this.availColors[this.numItems % 4]);
@@ -576,6 +623,18 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
+    }
+
+    this.resize = function(y)
+    {
+        if(y-this.itemHeight < 0)
+        {
+            var newHeight = animation.clientHeight+(animation.clientHeight/4);
+            animation.style.height = ""+newHeight+"px";
+
+            this.y = animation.clientHeight;
+
+        }
     }
 
 }
@@ -590,12 +649,15 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack(canvas.width/2.5, 100, 200, 75, 4, [4,3,2,1]);
+var stack = new Stack((canvas.width/2)-100, 425, 125, 40, 4, [4,3,2,1]);
+
+console.log(canvas.height)
 
 var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
-var linkedListDoubly = new LinkedList(canvas.width/8, 100, 100, 50, 4, 100, "doubly",  [1,2,3,4]);
-var linkedListSingly = new LinkedList(canvas.width/8, 200, 100, 50, 4, 100, "singly",  [1,2,3,4]);
+var linkedListDoubly = new LinkedList(10, 100, 100, 50, 4, 100, "doubly",  [1,2,3,4]);
+var linkedListSingly = new LinkedList(10, 200, 100, 50, 4, 100, "singly",  [1,2,3,4]);
+
 
 //It doesn't matter what x & y for tree is
 var tree = new BinaryTree(0, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
@@ -657,7 +719,7 @@ else if(webPage.includes("Queue.html"))
     {
         if(checkValidInput())
         {
-            document.getElementById("inputField").value
+            queue.enqueue(document.getElementById("inputField").value);
         }
         else
         {
