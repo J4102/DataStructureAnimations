@@ -3,74 +3,79 @@
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
 var currentScrollPos = window.pageYOffset;
+var animationPosition = document.getElementById("animation_container").offsetTop;
+
+if(currentScrollPos<animationPosition-100)
+{
+document.getElementById("leftButton").style.top = "0";
+}
+else{
+  document.getElementById("leftButton").style.top="-1024px";
+}
   if (prevScrollpos > currentScrollPos) {
     document.getElementById("header_container").style.top = "0";
+    
   } else {
     document.getElementById("header_container").style.top = "-1024px";
   }
   prevScrollpos = currentScrollPos;
 }
+// make arrow follow scroll
+
+
 
 /////////////////////////////////////////Change mode
 // check for saved 'darkMode' in localStorage
-let darkMode = localStorage.getItem('darkMode');
+let lightMode = localStorage.getItem('lightMode');
 
 
-const enableDarkMode = () => {
+const enableLightMode = () => {
 
-  document.body.classList.add('dark-mode');
+  document.body.classList.add('dark-off');
 
-  localStorage.setItem('darkMode', 'enabled');
+  localStorage.setItem('lightMode', 'enabled');
 }
 
-const disableDarkMode = () => {
+const disableLightMode = () => {
 
-  document.body.classList.remove('dark-mode');
+  document.body.classList.remove('dark-off');
  
-  localStorage.setItem('darkMode', null);
+  localStorage.setItem('lightMode', null);
 }
 
-// If the user already visited and enabled darkMode
-// start things off with it on
+
 
 
 function changeMode() {
 
-  darkMode = localStorage.getItem('darkMode'); 
+  lightMode = localStorage.getItem('lightMode'); 
   
 
-  if (darkMode !== 'enabled') {
-    enableDarkMode();
+  if (lightMode !== 'enabled') {
+    enableLightMode();
   
   } else {  
-    disableDarkMode(); 
+    disableLightMode(); 
   }
 };
 ///////////////////////Keep checkbox the same after refresh
-function check()
-{
-  var cb=document.getElementsByClassName("slider round");
-  if( dark==='enabled')
-  {
-    document.body.classList.add("input:checked + .slider ");
-  }
-  else
-  {
-    document.body.classList.add(".slider:before");
-  }
-}
+
 window.onload=_=>
  {
-   if(darkMode==='enabled')
+   if(lightMode==='enabled')
   {
-    enableDarkMode();
+    enableLightMode();
     
     
   }
   var elements = document.getElementsByTagName("INPUT");
 for (var inp of elements) {
-    if (inp.type === "checkbox"&&darkMode==='enabled')
-        inp.checked = true;
+    if (inp.type === "checkbox"&&lightMode==='enabled')
+        inp.checked = false;
+
+    else{
+      inp.checked=true;
+    }
 }
   
   
