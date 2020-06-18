@@ -309,7 +309,8 @@ li a.active {
 {
   float:right;
   width: 100%;
-  background-image: url('../images/animation_bckg.jpg');;
+  background-image: url('../images/animation_bckg.jpg');
+  overflow: scroll
 }
 
 .btn-methods 

@@ -630,9 +630,14 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
         if(y-this.itemHeight < 0)
         {
             var newHeight = animation.clientHeight+(animation.clientHeight/4);
+            
             animation.style.height = ""+newHeight+"px";
+            animation.height = newHeight;
+            canvas.style.height = ""+newHeight+"px";
+            canvas.height = newHeight;
 
-            this.y = animation.clientHeight;
+            this.y = newHeight;
+            
 
         }
     }
@@ -649,7 +654,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack((canvas.width/2)-100, 425, 125, 40, 4, [4,3,2,1]);
+var stack = new Stack((canvas.width/2), 425, 125, 40, 4, [4,3,2,1]);
 
 console.log(canvas.height)
 
