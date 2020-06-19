@@ -286,31 +286,14 @@ li a.active {
   display:flex;
   border-color: #363636;
   border-style: solid;
+  background-image: url('../images/animation_bckg.jpg');
   
   margin: 1%;
-  padding: 0;
   align-self: center;
-  
-}
 
-#code
-{
-  float:left;
-  width: 30%;
-  background-color: white;
-  border: 1px solid black;
-  
- white-space:pre-wrap;
-  
-  
-}
+  overflow-x: scroll;
 
-#animation
-{
-  float:right;
-  width: 100%;
-  background-image: url('../images/animation_bckg.jpg');
-  overflow: scroll
+  
 }
 
 .btn-methods 
@@ -321,7 +304,7 @@ li a.active {
   border-style: solid;
   padding: 1%;
   display: inline-flex;
-
+  
 }
 .btn-methods button {
   background-color: #4CAF50;
@@ -334,6 +317,44 @@ li a.active {
   align-content: center;
   display: block; /* Make the buttons appear below each other */
   
+}
+
+.linked-list-modes
+{
+  margin-top: 3%;
+  margin-left: 3%;
+  border-color: black;
+  border-style: solid;
+  padding: 1%;
+  display: inline-flex;
+  align-items: center;
+  
+}
+
+.linked-list-btn
+{
+  background-color: #46c2e0;
+  border: 1px solid rgb(15, 34, 97); 
+  color: white; 
+  padding: 15px 80px 15px 40px;
+  cursor: pointer; 
+  width: 20%; 
+  margin: 1%;
+  align-content: center;
+  display: block; /* Make the buttons appear below each other */
+}
+
+.linked-list-selected-btn
+{
+    background-color: #0695c0;
+    border: 1px solid rgb(15, 34, 97); 
+    color: white; 
+    padding: 15px 80px 15px 40px;
+    cursor: pointer; 
+    width: 20%; 
+    margin: 1%;
+    align-content: center;
+    display: block; /* Make the buttons appear below each other */
 }
 
 .btn-methods button:not(:last-child) {

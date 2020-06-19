@@ -7,13 +7,21 @@ console.log("hi");
 // getting 2D context of canvas
 const c = canvas.getContext('2d');
 
-canvas.height = document.getElementById("animation_container").clientHeight;
-canvas.width = document.getElementById("animation_container").clientWidth;
 
 //To match up canvas with animation's dimensions
 const animation = document.getElementById("animation_container");
 
-animation.sethe
+
+canvas.height = animation.clientHeight;
+canvas.width = animation.clientWidth;
+canvas.style.width = ""+animation.clientWidth+"px";
+canvas.style.height = ""+animation.clientHeight+"px";
+
+//const btnMethods = document.getElementById("btn-methods");
+
+//canvas.height = animation.clientHeight
+
+//animation.style.height = ""+canvas.height+"px";
 
 if(animation == null)
 {
@@ -159,8 +167,6 @@ function BinaryTree(x, y, itemRadius,spacing, data)
         this.treeHeight = this.getHeight(root);
         this.spacing = 20*this.treeHeight;
 
-        console.log(this.spacing);
-
     }
 
     this.draw = function(node,newX, newY, disFactor, lineDirec)
@@ -239,7 +245,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     
     c.strokeStyle="black";
 
-    //Draws stack on screen
     //Call it everytime to continously draw on the screen
     
     this.draw = function()
@@ -371,11 +376,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     //Add
     this.insert = function(num)
     {
-        if(this.numItems === 8)
-        {
-            window.alert("Linked List: Due to the window size, you may not insert more than 8 items!");
-            return;
-        }
         this.numItems++;
         this.data.push(num);
 
@@ -387,12 +387,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     
     this.resize = function(x)
     {
-        if(this.itemWidth+x > animation.clientWidth)
-        {
-            this.itemWidth-= (this.itemWidth/4);
-            this.itemHeight-= (this.itemHeight/4);
-            this.spacing-=(this.spacing/4);
-        }
+        
     }
     
 
@@ -420,7 +415,7 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     this.numItems = numItems;
     this.data = data;
 
-    //Possible colors of the stack items
+    //Possible colors of the queue items
     this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
 
     //Colors being used
@@ -430,7 +425,7 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     c.strokeStyle="black";
     
     
-    //Current stack item value (remove/add)
+    //Current queue item value (remove/add)
     this.currX = this.x;
     this.currY = this.y;
 
@@ -439,7 +434,6 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     this.oY = y;
     this.oNumItems = numItems;
 
-    //Draws stack on screen
     //Call it everytime to continously draw on the screen
     this.draw = function()
     {
@@ -511,9 +505,7 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     {
         if(this.itemWidth+x > animation.clientWidth)
         {
-            this.itemWidth-= (this.itemWidth/4);
-            this.itemHeight-= (this.itemHeight/4);
-            this.spacing-=(this.spacing/4);
+            this.x+=(this.itemWidth*5);
         }
     }
 }
@@ -560,8 +552,10 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 
     //Draws stack on screen
     //Call it everytime to continously draw on the screen
+
     this.draw = function()
     {
+        console.log("BEFORE DRAW: " + this.y);
         var newY = this.y-this.itemHeight;
 
         for(var i = this.numItems-1; i >= 0; i--)
@@ -629,16 +623,8 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     {
         if(y-this.itemHeight < 0)
         {
-            var newHeight = animation.clientHeight+(animation.clientHeight/4);
-            
-            animation.style.height = ""+newHeight+"px";
-            animation.height = newHeight;
-            canvas.style.height = ""+newHeight+"px";
-            canvas.height = newHeight;
-
-            this.y = newHeight;
-            
-
+            this.y+=(this.itemHeight*5);
+        
         }
     }
 
@@ -654,14 +640,15 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack((canvas.width/2), 425, 125, 40, 4, [4,3,2,1]);
-
-console.log(canvas.height)
+var stack = new Stack((canvas.width/2), canvas.height-20, 125, 40, 4, [4,3,2,1]);
 
 var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
 var linkedListDoubly = new LinkedList(10, 100, 100, 50, 4, 100, "doubly",  [1,2,3,4]);
-var linkedListSingly = new LinkedList(10, 200, 100, 50, 4, 100, "singly",  [1,2,3,4]);
+var linkedListSingly = new LinkedList(10, 100, 100, 50, 4, 100, "singly",  [1,2,3,4]);
+
+//Specific linked list to draw 
+var linkedList;
 
 
 //It doesn't matter what x & y for tree is
@@ -671,124 +658,15 @@ tree.initialize();
 var mode = "";
 var webPage = window.location.pathname
 
+setupBtns();
 
-//LINKED LIST --------------------------------------------------------------
-if(webPage.includes("linkedlist.html"))
-{
-    //LINKED LIST------------------------------------------------------------
-    document.getElementById("deleteBtn").addEventListener("click",
-
-    function()
-    {
-        
-        linkedListDoubly.delete();
-        linkedListSingly.delete();
-    }
-    );
-
-    document.getElementById("insertBtn").addEventListener("click",
-
-    function()
-    {
-        if(checkValidInput())
-        {
-            linkedListDoubly.insert(document.getElementById("inputField").value);
-            linkedListSingly.insert(document.getElementById("inputField").value);
-        }
-        else
-        {
-            window.alert("Linked List: Please enter a single digit number!")
-        }
-    }
-    );
-
-    mode = "linked_list";
-
-    
-}
-
-//QUEUE --------------------------------------------------------------
-else if(webPage.includes("Queue.html"))
-{
-    document.getElementById("dequeueBtn").addEventListener("click",
-
-    function()
-    {
-        queue.dequeue();
-    }
-    );
-
-    document.getElementById("enqueueBtn").addEventListener("click",
-
-    function()
-    {
-        if(checkValidInput())
-        {
-            queue.enqueue(document.getElementById("inputField").value);
-        }
-        else
-        {
-            window.alert("QUEUE: Please enter a single digit number!")
-        }
-    }
-    );
-
-    mode = "queue";
-}
-
-else if(webPage.includes("hashtable.html"))
-{
-    mode = "hash_table";
-}
-else if(webPage.includes("Stack.html"))
-{
-    document.getElementById("popBtn").addEventListener("click",
-
-    function()
-    {
-        stack.pop();
-    }
-    );
-
-    document.getElementById("pushBtn").addEventListener("click",
-
-    function()
-    {
-        if(checkValidInput())
-        {
-            stack.push(document.getElementById("inputField").value);
-        }
-        else
-        {
-            window.alert("Stack: Please enter a single digit number!")
-        }
-    }
-    );
-
-
-    mode = "stack";
-}
-else
-{
-    document.getElementById("insertTreeNodeBtn").addEventListener("click",
-
-        function()
-        {
-            if(checkValidInput())
-            {
-                tree.insertNode(tree.getRoot(), new Node(document.getElementById("inputField").value, null, null));
-            }
-            else
-            {
-                window.alert("Please enter a single digit number!")
-            }
-        }
-        
-    );
-
-    mode = "tree";
-}
-
+/*
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    ------------------------ ANIMATION---------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+*/
 
 function animate()
 {
@@ -800,9 +678,11 @@ function animate()
     
     switch(mode)
     {
-        case "linked_list":
-            linkedListDoubly.draw();
+        case "linked_list_singly":
             linkedListSingly.draw();
+            break;
+        case "linked_list_doubly":
+            linkedListDoubly.draw();
             break;
         case "queue":
             queue.draw();
@@ -842,5 +722,169 @@ function checkValidInput()
     -------------------------------------------------------------------------------------------
 */
 
+function setupBtns()
+{
+    //LINKED LIST --------------------------------------------------------------
+    if(webPage.includes("linkedlist.html"))
+    {
+        //By default, singly list will show
+        mode = "linked_list_singly";
+        document.getElementById("singlyBtn").className = "linked-list-selected-btn";
+        linkedList = linkedListSingly;
 
-//-------------------------------------------------------------------------
+        var singlyBtn = document.getElementById("singlyBtn");
+        var doublyBtn = document.getElementById("doublyBtn");
+        var circularBtn = document.getElementById("circularBtn");
+
+        //LINKED LIST------------------------------------------------------------
+        document.getElementById("deleteBtn").addEventListener("click",
+
+        function()
+        {
+            linkedList.delete();
+        }
+        );
+
+        document.getElementById("insertBtn").addEventListener("click",
+
+        function()
+        {
+            if(checkValidInput())
+            {
+                linkedList.insert(document.getElementById("inputField").value);
+            }
+            else
+            {
+                window.alert("Linked List: Please enter a single digit number!")
+            }
+        }
+        );
+
+        //Selected Modes of btns ----------------------------------------------------------
+
+        singlyBtn.addEventListener("click",
+
+        function()
+        {
+            mode= "linked_list_singly";
+            singlyBtn.className = "linked-list-selected-btn";
+            doublyBtn.className = "linked-list-btn";
+            circularBtn.className = "linked-list-btn";
+
+            linkedList = linkedListSingly;
+            
+        }
+        );
+
+        doublyBtn.addEventListener("click",
+
+        function()
+        {
+            mode= "linked_list_doubly";
+            doublyBtn.className = "linked-list-selected-btn";
+            singlyBtn.className = "linked-list-btn";
+            circularBtn.className = "linked-list-btn";
+
+            linkedList = linkedListDoubly;
+        }
+        );
+
+        circularBtn.addEventListener("click",
+
+        function()
+        {
+            mode= "linked_list_circular";
+            circularBtn.className = "linked-list-selected-btn";
+            doublyBtn.className = "linked-list-btn";
+            singlyBtn.className = "linked-list-btn";
+        }
+        );
+
+
+        
+    }
+
+    //QUEUE --------------------------------------------------------------
+    else if(webPage.includes("Queue.html"))
+    {
+        document.getElementById("dequeueBtn").addEventListener("click",
+
+        function()
+        {
+            queue.dequeue();
+        }
+        );
+
+        document.getElementById("enqueueBtn").addEventListener("click",
+
+        function()
+        {
+            if(checkValidInput())
+            {
+                queue.enqueue(document.getElementById("inputField").value);
+            }
+            else
+            {
+                window.alert("QUEUE: Please enter a single digit number!")
+            }
+        }
+        );
+
+        mode = "queue";
+    }
+
+    else if(webPage.includes("hashtable.html"))
+    {
+        mode = "hash_table";
+    }
+    else if(webPage.includes("Stack.html"))
+    {
+        document.getElementById("popBtn").addEventListener("click",
+
+        function()
+        {
+            stack.pop();
+        }
+        );
+
+        document.getElementById("pushBtn").addEventListener("click",
+
+        function()
+        {
+            if(checkValidInput())
+            {
+                stack.push(document.getElementById("inputField").value);
+            }
+            else
+            {
+                window.alert("Stack: Please enter a single digit number!")
+            }
+        }
+        );
+
+
+        mode = "stack";
+    }
+    else
+    {
+        document.getElementById("insertTreeNodeBtn").addEventListener("click",
+
+            function()
+            {
+                if(checkValidInput())
+                {
+                    tree.insertNode(tree.getRoot(), new Node(document.getElementById("inputField").value, null, null));
+                }
+                else
+                {
+                    window.alert("Please enter a single digit number!")
+                }
+            }
+            
+        );
+
+        mode = "tree";
+}
+
+
+}
