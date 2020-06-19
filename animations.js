@@ -11,7 +11,6 @@ const c = canvas.getContext('2d');
 //To match up canvas with animation's dimensions
 const animation = document.getElementById("animation_container");
 
-
 canvas.height = animation.clientHeight;
 canvas.width = animation.clientWidth;
 canvas.style.width = ""+animation.clientWidth+"px";
@@ -221,7 +220,7 @@ function BinaryTree(x, y, itemRadius,spacing, data)
 /*
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
-    ------------------------LINKED LIST (DOUBLY) DATASTRUCTURE  -------------------------------
+    ------------------------LINKED LIST (SINGLY,DOUBLY,CIRCULAR) DATASTRUCTURE  ---------------
     -------------------------------------------------------------------------------------------
     -------------------------------------------------------------------------------------------
 */
@@ -297,7 +296,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
         {
 
             //Middle arrow
-            if(mode === "singly")
+            if(mode === "singly" || mode === "circular")
             {
                 c.beginPath();
                 //Top Arrow - horizontal line
@@ -354,6 +353,29 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             newX+= (this.itemWidth+spacing);
 
             this.resize(newX);
+        }
+
+        if(mode === "circular")
+        {
+            c.lineWidth = 4;
+
+            //Circle arrow coords
+            var arrowX = newX -(this.itemWidth/2) + this.spacing;
+            var arrowY = this.y + this.itemHeight+this.spacing/4;
+            console.log("drawing" + newX);
+
+            //Connector
+            c.moveTo(arrowX, arrowY);
+            c.lineTo(arrowX, arrowY+ (this.spacing/4 *3));
+            c.lineTo(40+(this.itemWidth/2), arrowY+ (this.spacing/4 *3));
+            c.lineTo(40+(this.itemWidth/2), arrowY);
+
+            //Arrows
+            c.lineTo(40+(this.itemWidth/2)-10, arrowY+30);
+            c.moveTo(40+(this.itemWidth/2), arrowY);
+            c.lineTo(40+(this.itemWidth/2)+10, arrowY+30);
+
+            c.stroke();
         }
 
     }
@@ -646,6 +668,7 @@ var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
 var linkedListDoubly = new LinkedList(10, 100, 100, 50, 4, 100, "doubly",  [1,2,3,4]);
 var linkedListSingly = new LinkedList(10, 100, 100, 50, 4, 100, "singly",  [1,2,3,4]);
+var linkedListCircular = new LinkedList(40, 100, 100, 50, 4, 100, "circular",  [1,2,3,4]);
 
 //Specific linked list to draw 
 var linkedList;
@@ -683,6 +706,9 @@ function animate()
             break;
         case "linked_list_doubly":
             linkedListDoubly.draw();
+            break;
+        case "linked_list_circular":
+            linkedListCircular.draw();
             break;
         case "queue":
             queue.draw();
@@ -797,6 +823,8 @@ function setupBtns()
             circularBtn.className = "linked-list-selected-btn";
             doublyBtn.className = "linked-list-btn";
             singlyBtn.className = "linked-list-btn";
+
+            linkedList = linkedListCircular;
         }
         );
 
@@ -884,7 +912,7 @@ function setupBtns()
         );
 
         mode = "tree";
-}
+    }
 
 
 }
