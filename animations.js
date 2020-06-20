@@ -11,6 +11,7 @@ const c = canvas.getContext('2d');
 //To match up canvas with animation's dimensions
 const animation = document.getElementById("animation_container");
 
+//Match up canvas dimenisons with actual box dimensions
 canvas.height = animation.clientHeight;
 canvas.width = animation.clientWidth;
 canvas.style.width = ""+animation.clientWidth+"px";
@@ -22,13 +23,130 @@ canvas.style.height = ""+animation.clientHeight+"px";
 
 //animation.style.height = ""+canvas.height+"px";
 
-if(animation == null)
-{
-    console.log("yet")
-}
-/*
 
+/*
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    ------------------------HASHTABLE DATASTRUCTURE  ------------------------------------------
+    -------------------------------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
 */
+
+//x & y == top left corner of stack
+function HashTable(x, y, itemWidth, itemHeight, size, initialData)
+{   
+    //Current values - changes while items are being removed and added
+    this.x = x;
+    this.y = y;
+    this.itemWidth = itemWidth;
+    this.itemHeight = itemHeight;
+    this.size = size;
+
+    //Data of hashtable
+    this.initialData = initialData; //Only used once
+    this.data = [];
+
+    //The possible color combinations
+    this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
+
+    //Colors of items
+    this.colors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
+
+    c.strokeStyle="black";
+        
+    this.initialize = function()
+    {
+        for(var i = 0; i < this.size; i++)
+        {
+            this.data.push("");
+        }
+
+        for(var i = 0; i < this.initialData.length; i++)
+        {
+            var index = this.hash(this.initialData[i]);
+
+            this.data.splice(index, 0, this.initialData[i]);
+        }
+
+        console.log("wee datal en"+this.data.length)
+    }
+
+    //Draws hashtable on screen
+    //Call it everytime to continously draw on the screen
+    this.draw = function()
+    {
+        var newY = this.y-this.itemHeight;
+
+        for(var i = this.numItems-1; i >= 0; i--)
+        {
+               
+            //Fill
+            c.fillStyle = this.colors[i];
+            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
+
+            //Border
+            c.lineWidth = 4;
+            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight);
+
+            newY-=(this.itemHeight+10);
+
+            this.resize(newY);
+        }
+
+        for(var i = 0; i < this.data.length; i++)
+        {
+            //Text
+            c.fillStyle = "#000000";
+            c.font = '20px fantasy';
+            
+            
+            
+            c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
+        }
+
+        //Container of stack
+        c.beginPath();
+        c.moveTo(this.x-10, newY+5);
+        c.lineTo(this.x-10, this.y+10);
+        c.lineTo(this.x+this.itemWidth+10, this.y+10);
+        c.lineTo(this.x+this.itemWidth+10, newY+5);
+        c.stroke();
+    }
+
+    this.remove = function()
+    {
+        this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
+    }
+
+    this.insert = function(num)
+    {
+        this.colors.unshift(this.availColors[this.numItems % 4]);
+
+        this.draw();
+
+        var snd = new Audio("sounds/pop.flac");
+        snd.play();
+    }
+
+    this.hash = function(word)
+    {
+        var val = 1;
+
+        for(var i = 0; i < word.length; i++)
+        {
+            val*=(word.charCodeAt(i));
+        }
+
+        console.log("value is: " + val);
+        
+        return (val % this.data.length);
+    }
+
+}
+
 
 /*
     -------------------------------------------------------------------------------------------
@@ -409,15 +527,23 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     
     this.resize = function(x)
     {
-        
+        if(this.itemWidth+x > animation.clientWidth)
+        {
+            var newWidth = animation.clientWidth + (3*(this.itemWidth + this.spacing))
+            canvas.width = newWidth;
+            canvas.style.width = ""+newWidth+"px";
+
+            console.log(canvas.width);
+            animation.style.width = ""+newWidth+"px";
+            //animation.width = newWidth;
+
+        }
     }
     
 
 
     
 }
-
-
 
 /*
     -------------------------------------------------------------------------------------------
@@ -442,7 +568,6 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
 
     //Colors being used
     this.colors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
-
 
     c.strokeStyle="black";
     
@@ -662,7 +787,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     -------------------------------------------------------------------------------------------
 */
 
-var stack = new Stack((canvas.width/2), canvas.height-20, 125, 40, 4, [4,3,2,1]);
+var stack = new Stack(canvas.width/2, canvas.height-20, 125, 40, 4, [4,3,2,1]);
 
 var queue = new Queue(100, 100, 50, 125, 4, [1,2,3,4]);
 
@@ -677,6 +802,11 @@ var linkedList;
 //It doesn't matter what x & y for tree is
 var tree = new BinaryTree(0, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
+
+var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 10, ["hi", "yo"]);
+hashTable.initialize();
+
+console.log(hashTable.hash("ab"));
 
 var mode = "";
 var webPage = window.location.pathname
@@ -718,6 +848,9 @@ function animate()
             break;   
         case "tree":
             tree.draw(tree.getRoot(), canvas.width/2, 0, 1, "");
+            break;
+        case "hash_table":
+            hashTable.draw();
             break;
     }
 
@@ -893,7 +1026,7 @@ function setupBtns()
 
         mode = "stack";
     }
-    else
+    else if(webPage.includes("tree.html"))
     {
         document.getElementById("insertTreeNodeBtn").addEventListener("click",
 
@@ -902,6 +1035,42 @@ function setupBtns()
                 if(checkValidInput())
                 {
                     tree.insertNode(tree.getRoot(), new Node(document.getElementById("inputField").value, null, null));
+                }
+                else
+                {
+                    window.alert("Please enter a single digit number!")
+                }
+            }
+            
+        );
+
+        mode = "tree";
+    }
+    else
+    {
+        document.getElementById("insertHashTableBtn").addEventListener("click",
+
+            function()
+            {
+                if(checkValidInput())
+                {
+                    hashTable.insert(document.getElementById("inputField").value);
+                }
+                else
+                {
+                    window.alert("Please enter a single digit number!")
+                }
+            }
+            
+        );
+
+        document.getElementById("removeHashTableBtn").addEventListener("click",
+
+            function()
+            {
+                if(checkValidInput())
+                {
+                    hashTable.remove(document.getElementById("inputField").value);
                 }
                 else
                 {

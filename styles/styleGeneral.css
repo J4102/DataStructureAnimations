@@ -291,7 +291,8 @@ li a.active {
   margin: 1%;
   align-self: center;
 
-  overflow-x: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
 
   
 }
