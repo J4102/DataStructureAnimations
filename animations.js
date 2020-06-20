@@ -44,6 +44,7 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
     //Data of hashtable
     this.initialData = initialData; //Only used once
+    this.numItems = this.initialData.length;
     this.data = [];
 
     //The possible color combinations
@@ -59,16 +60,13 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         for(var i = 0; i < this.size; i++)
         {
             this.data.push("");
+            this.colors.unshift(this.availColors[this.data.length % 4]);
         }
 
         for(var i = 0; i < this.initialData.length; i++)
         {
-            var index = this.hash(this.initialData[i]);
-
-            this.data.splice(index, 0, this.initialData[i]);
+            this.insert(initialData[i], false);
         }
-
-        console.log("wee datal en"+this.data.length)
     }
 
     //Draws hashtable on screen
@@ -77,7 +75,7 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
     {
         var newY = this.y-this.itemHeight;
 
-        for(var i = this.numItems-1; i >= 0; i--)
+        for(var i = this.size-1; i >= 0; i--)
         {
                
             //Fill
@@ -93,15 +91,20 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
             this.resize(newY);
         }
 
+        
+        var dataY = newY+(this.itemHeight+10);
+
+
         for(var i = 0; i < this.data.length; i++)
         {
             //Text
             c.fillStyle = "#000000";
             c.font = '20px fantasy';
+
             
-            
-            
-            c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
+            c.fillText(this.data[i], this.x + (this.itemWidth/2), dataY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
+            //c.fillText(this.data[i], 50, 50+(i*20), 5, 5);
+            dataY+=(this.itemHeight+10);
         }
 
         //Container of stack
@@ -121,14 +124,45 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         snd.play();
     }
 
-    this.insert = function(num)
+    this.insert = function(word, init)
     {
-        this.colors.unshift(this.availColors[this.numItems % 4]);
+        if(this.numItems === this.data.length)
+        {
+            window.alert("HashTable: There is no more available space in the HashTable, use the 'Increase Size' button!");
+            return;
+        }
+
+        if(word.length > 4)
+        {
+            window.alert("HashTable: You may only insert strings of up to more than 4 characters!");
+            return;
+        }
+
+        var index = this.hash(word);
+
+        //Find available index in hashtable
+        if(this.data[index] === "")
+        {
+            while(this.data[index] === "")
+            {
+                index = ((index + 1) % this.data.length);
+            }
+        }
+
+        this.data[index] = word;
+
+        this.numItems++;
 
         this.draw();
 
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
+        //Only play sound when after page has loaded up
+        //Sound will not play for initial data being added
+        if(!init)
+        {
+            var snd = new Audio("sounds/pop.flac");
+            snd.play();
+        }
+
     }
 
     this.hash = function(word)
@@ -139,12 +173,27 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         {
             val*=(word.charCodeAt(i));
         }
-
-        console.log("value is: " + val);
         
         return (val % this.data.length);
     }
 
+    this.resize = function(y)
+    {
+        if(y-this.itemHeight < 0)
+        {
+            this.y+=(this.itemHeight*5);
+
+
+
+            var newHeight = this.y+20;
+            canvas.height = newHeight;
+            canvas.style.height = ""+newHeight+"px";
+
+            animation.style.height = ""+newHeight+"px";
+            animation.height = newHeight;
+        
+        }
+    }
 }
 
 
@@ -533,7 +582,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             canvas.width = newWidth;
             canvas.style.width = ""+newWidth+"px";
 
-            console.log(canvas.width);
             animation.style.width = ""+newWidth+"px";
             //animation.width = newWidth;
 
@@ -803,10 +851,8 @@ var linkedList;
 var tree = new BinaryTree(0, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
 
-var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 10, ["hi", "yo"]);
+var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 10, ["hi", "yoma"]);
 hashTable.initialize();
-
-console.log(hashTable.hash("ab"));
 
 var mode = "";
 var webPage = window.location.pathname
@@ -993,11 +1039,6 @@ function setupBtns()
 
         mode = "queue";
     }
-
-    else if(webPage.includes("hashtable.html"))
-    {
-        mode = "hash_table";
-    }
     else if(webPage.includes("Stack.html"))
     {
         document.getElementById("popBtn").addEventListener("click",
@@ -1050,37 +1091,28 @@ function setupBtns()
     {
         document.getElementById("insertHashTableBtn").addEventListener("click",
 
-            function()
-            {
-                if(checkValidInput())
-                {
-                    hashTable.insert(document.getElementById("inputField").value);
-                }
-                else
-                {
-                    window.alert("Please enter a single digit number!")
-                }
-            }
-            
-        );
+        function()
+        {
+            console.log("tried insert")
+            hashTable.insert(document.getElementById("inputField").value, false);
 
-        document.getElementById("removeHashTableBtn").addEventListener("click",
+        }
+        
+    );
 
-            function()
-            {
-                if(checkValidInput())
-                {
-                    hashTable.remove(document.getElementById("inputField").value);
-                }
-                else
-                {
-                    window.alert("Please enter a single digit number!")
-                }
-            }
-            
-        );
+    document.getElementById("removeHashTableBtn").addEventListener("click",
 
-        mode = "tree";
+        function()
+        {
+            hashTable.remove(document.getElementById("inputField").value);
+
+        }
+        
+    );
+
+        mode = "hash_table";
+
+        
     }
 
 
