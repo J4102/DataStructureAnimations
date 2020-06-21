@@ -1,5 +1,5 @@
 // getting a reference to our HTML element
-const canvas = document.querySelector('canvas')
+const canvas = document.querySelector('canvas');
 
 console.log("hi");
 //var canvas = document.getElementById("canvas");
@@ -32,9 +32,10 @@ canvas.style.height = ""+animation.clientHeight+"px";
     -------------------------------------------------------------------------------------------
 */
 
-//x & y == top left corner of stack
+//x & y == top left corner of hashtable
 function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 {   
+    
     //Current values - changes while items are being removed and added
     this.x = x;
     this.y = y;
@@ -44,14 +45,16 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
     //Data of hashtable
     this.initialData = initialData; //Only used once
-    this.numItems = this.initialData.length;
+    this.numItems = 0;
     this.data = [];
+
+    this.needRehash = false;
 
     //The possible color combinations
     this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
 
     //Colors of items
-    this.colors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
+    this.colors = [];
 
     c.strokeStyle="black";
         
@@ -65,8 +68,10 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
         for(var i = 0; i < this.initialData.length; i++)
         {
-            this.insert(initialData[i], false);
+            this.insert(this.initialData[i], false);
         }
+
+        console.log("initial color size: " + this.colors.length);
     }
 
     //Draws hashtable on screen
@@ -103,7 +108,6 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
             
             c.fillText(this.data[i], this.x + (this.itemWidth/2), dataY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
-            //c.fillText(this.data[i], 50, 50+(i*20), 5, 5);
             dataY+=(this.itemHeight+10);
         }
 
@@ -114,10 +118,34 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         c.lineTo(this.x+this.itemWidth+10, this.y+10);
         c.lineTo(this.x+this.itemWidth+10, newY+5);
         c.stroke();
+
+
+        //If array is full
+        if(this.numItems === this.data.length)
+        {   
+            this.needRehash = true;
+
+            //Indicate increase in array size needed
+            document.getElementById("incrSizeHashTableBtn").className = "other-btn-selected";
+        }
     }
 
-    this.remove = function()
+
+    //Check to see if this works
+    this.remove = function(word)
     {
+        if(this.data.includes(word))
+        {
+            const index = this.data.indexOf(word);
+            this.data.splice(index, 1);
+        }
+        else
+        {
+            window.alert("HashTable: This element does not exist in the HashTable!");
+        }
+
+        this.numItems--;
+
         this.draw();
 
         var snd = new Audio("sounds/pop.flac");
@@ -128,6 +156,7 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
     {
         if(this.numItems === this.data.length)
         {
+            
             window.alert("HashTable: There is no more available space in the HashTable, use the 'Increase Size' button!");
             return;
         }
@@ -138,26 +167,31 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
             return;
         }
 
+        if(this.needRehash)
+        {
+            window.alert("HashTable: Please rehash your items before inserting more items!");
+            return;
+        }
+
         var index = this.hash(word);
 
-        //Find available index in hashtable
-        if(this.data[index] === "")
+        //Find available index in hashtable linear probing  (loop while there is index that are full)
+        while(this.data[index] !== "")
         {
-            while(this.data[index] === "")
-            {
-                index = ((index + 1) % this.data.length);
-            }
+
+            index = ((index + 1) % this.data.length);
         }
+
+        //PROBLEM: IT REPLACES WORDS THO
 
         this.data[index] = word;
 
         this.numItems++;
 
         this.draw();
-
-        //Only play sound when after page has loaded up
-        //Sound will not play for initial data being added
-        if(!init)
+        
+        //Only can play sound when page is loaded
+        if(init)
         {
             var snd = new Audio("sounds/pop.flac");
             snd.play();
@@ -167,11 +201,13 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
     this.hash = function(word)
     {
-        var val = 1;
+        var val = 7;
 
         for(var i = 0; i < word.length; i++)
         {
             val*=(word.charCodeAt(i));
+            val+=331;
+
         }
         
         return (val % this.data.length);
@@ -183,16 +219,97 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         {
             this.y+=(this.itemHeight*5);
 
-
-
             var newHeight = this.y+20;
             canvas.height = newHeight;
             canvas.style.height = ""+newHeight+"px";
 
             animation.style.height = ""+newHeight+"px";
             animation.height = newHeight;
-        
         }
+    }
+
+    //Helper function to find next available size
+    this.getNextPrime = function(num) 
+    {
+        for (var i = num + 1;; i++) 
+        {
+            var isPrime = true;
+
+            for (var d = 2; d * d <= i; d++) 
+            {
+                if (i % d === 0) 
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) 
+            {
+                return i;
+            }
+        }
+    }
+
+    this.rehash = function()
+    {
+        if(this.needRehash)
+        {
+            document.getElementById("rehashHashTableBtn").className = "other-btn";
+            this.needRehash = false;
+        }
+        else
+        {
+            window.alert("HashTable: You may only rehash when the HashTable is full!");
+            return;
+        }
+
+        //Copies old array into new array
+        var newData = this.data.slice();
+
+        //Resetting the array to empty vaues
+        this.data = [];
+        for(var i = 0; i < newData.length; i++)
+        {
+            this.data.push("");
+        }
+
+        //To increment it again through insert, set it to 0
+        this.numItems = 0;
+
+        for(var i = 0; i < newData.length; i++)
+        {
+            if(newData[i] !== "")
+            {
+                this.insert(newData[i]);
+            }
+        }
+
+        
+    }
+
+    this.increaseSize = function()
+    {
+        document.getElementById("incrSizeHashTableBtn").className = "other-btn";
+
+        this.size = this.getNextPrime(this.size);
+
+        console.log(this.size);
+
+        //Adding more empty items to fill in array
+        while(this.data.length < this.size)
+        {
+            this.data.push("");
+            this.colors.unshift(this.availColors[this.data.length % 4]);
+
+            console.log("new size for colors: " + this.colors.length)
+        }
+
+        if(this.needRehash)
+        {
+            document.getElementById("rehashHashTableBtn").className = "other-btn-selected";
+        }
+
+        console.log(this.colors.length);
     }
 }
 
@@ -587,10 +704,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
 
         }
     }
-    
-
-
-    
 }
 
 /*
@@ -750,7 +863,6 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
 
     this.draw = function()
     {
-        console.log("BEFORE DRAW: " + this.y);
         var newY = this.y-this.itemHeight;
 
         for(var i = this.numItems-1; i >= 0; i--)
@@ -823,6 +935,8 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
         }
     }
 
+    this.inc
+
 }
 
 
@@ -851,7 +965,7 @@ var linkedList;
 var tree = new BinaryTree(0, canvas.height, 20, 100,[10,3,15,17,2,4,12, 19,20,21, 1,0,13,12,11,4,5,6]);
 tree.initialize();
 
-var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 10, ["hi", "yoma"]);
+var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 5, ["mo", "fun", "i", "huh"]);
 hashTable.initialize();
 
 var mode = "";
@@ -934,7 +1048,7 @@ function setupBtns()
     {
         //By default, singly list will show
         mode = "linked_list_singly";
-        document.getElementById("singlyBtn").className = "linked-list-selected-btn";
+        document.getElementById("singlyBtn").className = "other-btn-selected";
         linkedList = linkedListSingly;
 
         var singlyBtn = document.getElementById("singlyBtn");
@@ -972,9 +1086,9 @@ function setupBtns()
         function()
         {
             mode= "linked_list_singly";
-            singlyBtn.className = "linked-list-selected-btn";
-            doublyBtn.className = "linked-list-btn";
-            circularBtn.className = "linked-list-btn";
+            singlyBtn.className = "other-btn-selected";
+            doublyBtn.className = "other-btn";
+            circularBtn.className = "other-btn";
 
             linkedList = linkedListSingly;
             
@@ -986,9 +1100,9 @@ function setupBtns()
         function()
         {
             mode= "linked_list_doubly";
-            doublyBtn.className = "linked-list-selected-btn";
-            singlyBtn.className = "linked-list-btn";
-            circularBtn.className = "linked-list-btn";
+            doublyBtn.className = "other-btn-selected";
+            singlyBtn.className = "other-btn";
+            circularBtn.className = "other-btn";
 
             linkedList = linkedListDoubly;
         }
@@ -999,9 +1113,9 @@ function setupBtns()
         function()
         {
             mode= "linked_list_circular";
-            circularBtn.className = "linked-list-selected-btn";
-            doublyBtn.className = "linked-list-btn";
-            singlyBtn.className = "linked-list-btn";
+            circularBtn.className = "other-btn-selected";
+            doublyBtn.className = "other-btn";
+            singlyBtn.className = "other-btn";
 
             linkedList = linkedListCircular;
         }
@@ -1091,28 +1205,43 @@ function setupBtns()
     {
         document.getElementById("insertHashTableBtn").addEventListener("click",
 
-        function()
-        {
-            console.log("tried insert")
-            hashTable.insert(document.getElementById("inputField").value, false);
-
-        }
+            function()
+            {
+                hashTable.insert(document.getElementById("inputField").value, false);
+            }
         
-    );
+        );
 
-    document.getElementById("removeHashTableBtn").addEventListener("click",
+        document.getElementById("removeHashTableBtn").addEventListener("click",
 
-        function()
-        {
-            hashTable.remove(document.getElementById("inputField").value);
+            function()
+            {
+                hashTable.remove(document.getElementById("inputField").value);
 
-        }
+            }
         
-    );
+         );
+
+         document.getElementById("rehashHashTableBtn").addEventListener("click",
+
+            function()
+            {
+                hashTable.rehash();
+            }
+         
+        );
+
+        document.getElementById("incrSizeHashTableBtn").addEventListener("click",
+
+            function()
+            {
+                hashTable.increaseSize();
+            }
+          
+        );
+
 
         mode = "hash_table";
-
-        
     }
 
 

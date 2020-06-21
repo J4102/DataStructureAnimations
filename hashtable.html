@@ -6,7 +6,7 @@
     <title>HashTable</title>
     <meta name="description" content="Learn what a hash table is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
-    <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script> -->
     <script src="scriptGeneral.js"></script>
     <script src="animations.js" defer></script>
 </head>
@@ -88,19 +88,20 @@
 
   
   <div id="animation_container">
-    
-    
-    
     <div id="animation">
       <div class="btn-methods">
         <input type="text" id="inputField" name="inputField" value="">
         <button id="insertHashTableBtn">Insert</button>
         <button id="removeHashTableBtn">Remove</button>
       </div>
+
+      <div class="other-mode">
+        <button id="rehashHashTableBtn" class="other-btn">Rehash</button>
+        <button id="incrSizeHashTableBtn" class="other-btn">Increase Size</button>
+      </div>
       
-      <canvas id="canvas">
-        
-      </canvas>
+      <canvas id="canvas"></canvas>
+
     </div>
   </div>
   

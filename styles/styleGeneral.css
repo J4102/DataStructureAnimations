@@ -320,7 +320,7 @@ li a.active {
   
 }
 
-.linked-list-modes
+.other-mode
 {
   margin-top: 3%;
   margin-left: 3%;
@@ -332,7 +332,7 @@ li a.active {
   
 }
 
-.linked-list-btn
+.other-btn
 {
   background-color: #46c2e0;
   border: 1px solid rgb(15, 34, 97); 
@@ -345,7 +345,7 @@ li a.active {
   display: block; /* Make the buttons appear below each other */
 }
 
-.linked-list-selected-btn
+.other-btn-selected
 {
     background-color: #0695c0;
     border: 1px solid rgb(15, 34, 97); 
@@ -357,6 +357,8 @@ li a.active {
     align-content: center;
     display: block; /* Make the buttons appear below each other */
 }
+
+
 
 .btn-methods button:not(:last-child) {
   border-bottom: none; /* Prevent double borders */
