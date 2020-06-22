@@ -22,14 +22,15 @@ function BinaryTree(x, y, itemRadius,spacing, data)
     
     //Data can only be numbers!
     this.data = data;
-    this.numItems = this.data.length;
     this.treeHeight = 0;
 
-    root = new Node(data[0], null, null);
+    //1st node
+    this.root = new Node(data[0], null, null);
+    this.numItems = 1;
 
     this.getRoot = function()
     {
-        return root;
+        return this.root;
     }
 
     /* 
@@ -56,6 +57,16 @@ function BinaryTree(x, y, itemRadius,spacing, data)
 
     }
 
+    this.findMinNode = function(parent) 
+    { 
+        // if left of a node is null 
+        // then it must be minimum node 
+        if(parent.left === null) 
+            return parent; 
+        else
+            return this.findMinNode(parent.left); 
+    } 
+
     this.insertNode = function(parent, node)
     {
         if(parent.x < node.x)
@@ -63,6 +74,8 @@ function BinaryTree(x, y, itemRadius,spacing, data)
             if(parent.right === null)
             {
                 parent.right = node;
+                this.numItems++;
+                this.updateTreeSpacing();
             }
             else
                 this.insertNode(parent.right, node);
@@ -72,43 +85,72 @@ function BinaryTree(x, y, itemRadius,spacing, data)
             if(parent.left === null)
             {
                 parent.left = node;
+                this.numItems++;
+                this.updateTreeSpacing();
             }
             else
                 this.insertNode(parent.left, node);
         }
     }
 
+    this.delete = function(x)
+    {
+        this.root = this.deleteNode(this.root, x);
+    }
+
     this.deleteNode = function(parent, x)
     {
         if(parent === null)
         {
+            window.alert("Could not find value in tree!");
             return null;
         }
-        else if(x < parent.data)
+        else if(x < parent.x)
         {
-            parent.left = deleteNode(parent.left, x);
+            parent.left = this.deleteNode(parent.left, x);
             return parent;
         }
         else if(x > parent.x)
         {
-            parent.right = deleteNode(parent.right, x);
+            parent.right = this.deleteNode(parent.right, x);
             return parent;
         }
         //Found node
         else
         {
+            var snd = new Audio("sounds/pop.flac");
+            snd.play();
+
             //No children
             if(parent.left === null && parent.right === null)
             {
                 parent = null;
+                this.numItems--;
                 return parent;
             }
 
-            if(parent.left === null)
+            else if(parent.left === null)
             {
+                this.numItems--;
                 parent = parent.right;
-
+                return parent;
             }
+            else if(parent.right === null)
+            {
+                this.numItems--;
+                parent = parent.left;
+                return parent;
+            }
+            else
+            {
+                //For 2 children
+                var tmp = this.findMinNode(parent.right);
+                parent.x = tmp.x;
+
+                parent.right = this.deleteNode(parent.right, tmp.x);
+                return parent;
+            }
+
         }
     }
 
@@ -128,12 +170,8 @@ function BinaryTree(x, y, itemRadius,spacing, data)
         //data array is inserted into a binary tree structure in the order of items
         for(var i = 1; i < this.data.length; i++)
         {
-            this.insertNode(root, new Node(data[i], null, null));
+            this.insertNode(this.root, new Node(data[i], null, null));
         }
-
-        this.treeHeight = this.getHeight(root);
-        this.spacing = 20*this.treeHeight;
-
     }
 
     this.draw = function(node,newX, newY, disFactor, lineDirec)
@@ -176,5 +214,60 @@ function BinaryTree(x, y, itemRadius,spacing, data)
             c.stroke();
 
         }
+
+        this.resize(newY, newX);
+    }
+
+    this.resize = function(y, x)
+    {
+        if(y > animation.clientHeight)
+        {
+            var newHeight = animation.clientHeight + (3*(this.itemRadius + this.spacing))
+            canvas.height = newHeight;
+            canvas.style.height = ""+newHeight+"px";
+
+            animation.style.height = ""+newHeight+"px";
+            animation.height = newHeight;
+
+        }
+
+        if(x > animation.clientWidth || x < 0)
+        {
+            var newWidth = animation.clientWidth + (3*(this.itemRadius + this.spacing))
+            canvas.width = newWidth;
+            canvas.style.width = ""+newWidth+"px";
+
+            animation.style.width = ""+newWidth+"px";
+            animation.width = newWidth;
+
+        }
+    }
+
+    //ex. 17 items, make the height related to 16
+    //Create stats for the tree using this method
+    //After every insert
+    this.updateTreeSpacing = function()
+    {
+        //Compare size with lowest power of two
+        console.log("time to update tree spacing")
+        var lowestPowOf2 = 1;
+
+        while(lowestPowOf2 < this.numItems)
+        {
+            if(lowestPowOf2*2 > this.numItems)
+            {
+                break;
+            }
+            
+            lowestPowOf2*=2;
+        }
+
+        var newSpacing = lowestPowOf2 *30 ;
+
+        //newSpacing / 1.5 
+
+
+        this.spacing = newSpacing;
+
     }
 }

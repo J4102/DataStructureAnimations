@@ -44,8 +44,6 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         {
             this.insert(this.initialData[i], false);
         }
-
-        console.log("initial color size: " + this.colors.length);
     }
 
     //Draws hashtable on screen
@@ -85,13 +83,21 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
             dataY+=(this.itemHeight+10);
         }
 
+        //BUG 1 (below commented code)--------------------------------------------------------------
+        //This container also appears inside the queue canvas for some reason
+        //It gets called 4 times for some reason 
+        //Think it's because javascript thinks that the queue is a hashtable b/c all the functions are the same
+            //Maybe not b/ I changed the queue's method name and it didn't do anything
+
+        //------------------------------------------------------------------------------
+
         //Container of stack
-        c.beginPath();
-        c.moveTo(this.x-10, newY+5);
-        c.lineTo(this.x-10, this.y+10);
-        c.lineTo(this.x+this.itemWidth+10, this.y+10);
-        c.lineTo(this.x+this.itemWidth+10, newY+5);
-        c.stroke();
+        // c.beginPath();
+        // c.moveTo(this.x-10, newY+5);
+        // c.lineTo(this.x-10, this.y+10);
+        // c.lineTo(this.x+this.itemWidth+10, this.y+10);
+        // c.lineTo(this.x+this.itemWidth+10, newY+5);
+        // c.stroke();
 
 
         //If array is full
@@ -165,7 +171,7 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         this.draw();
         
         //Only can play sound when page is loaded
-        if(init)
+        if(!init)
         {
             var snd = new Audio("sounds/pop.flac");
             snd.play();
@@ -267,15 +273,12 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
         this.size = this.getNextPrime(this.size);
 
-        console.log(this.size);
-
         //Adding more empty items to fill in array
         while(this.data.length < this.size)
         {
             this.data.push("");
             this.colors.unshift(this.availColors[this.data.length % 4]);
 
-            console.log("new size for colors: " + this.colors.length)
         }
 
         if(this.needRehash)
@@ -283,6 +286,5 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
             document.getElementById("rehashHashTableBtn").className = "other-btn-selected";
         }
 
-        console.log(this.colors.length);
     }
 }

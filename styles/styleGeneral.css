@@ -292,9 +292,7 @@ li a.active {
   align-self: center;
 
   overflow-y: auto;
-  overflow-x: auto;
-
-  
+  overflow-x: auto;  
 }
 
 .btn-methods 

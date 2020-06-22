@@ -100,7 +100,7 @@ function Queue(x, y, itemWidth, itemHeight, numItems, data)
     {
         if(this.itemWidth+x > animation.clientWidth)
         {
-            var newWidth = animation.clientWidth + (3*(this.itemWidth + this.spacing))
+            var newWidth = animation.clientWidth + (3*(this.itemWidth))
             canvas.width = newWidth;
             canvas.style.width = ""+newWidth+"px";
 

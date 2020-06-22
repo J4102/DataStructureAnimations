@@ -40,41 +40,40 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     //Draws stack on screen
     //Call it everytime to continously draw on the screen
 
-    // this.draw = function()
-    // {
-    //     var newY = this.y-this.itemHeight;
+    this.draw = function()
+    {
+        var newY = this.y-this.itemHeight;
 
-    //     for(var i = this.numItems-1; i >= 0; i--)
-    //     {
+        for(var i = this.numItems-1; i >= 0; i--)
+        {
                
-    //         //Fill
-    //         c.fillStyle = this.colors[i];
-    //         c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
+            //Fill
+            c.fillStyle = this.colors[i];
+            c.fillRect(this.x, newY, this.itemWidth, this.itemHeight);
 
-    //         //Border
-    //         c.lineWidth = 4;
-    //         c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight);
+            //Border
+            c.lineWidth = 4;
+            c.strokeRect(this.x, newY, this.itemWidth, this.itemHeight);
 
-    //         //Text
-    //         c.fillStyle = "#000000";
-    //         c.font = '20px fantasy';
-    //         c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
+            //Text
+            c.fillStyle = "#000000";
+            c.font = '20px fantasy';
+            c.fillText(this.data[i], this.x + (this.itemWidth/2), newY + (this.itemHeight/2), this.itemWidth, this.itemHeight);
 
-    //         newY-=(this.itemHeight+10);
+            newY-=(this.itemHeight+10);
 
-    //         this.resize(newY);
-    //     }
+            this.resize(newY);
+        }
 
-    //     //Container of stack
-    //     c.beginPath();
-    //     c.moveTo(this.x-10, newY+5);
-    //     c.lineTo(this.x-10, this.y+10);
-    //     c.lineTo(this.x+this.itemWidth+10, this.y+10);
-    //     c.lineTo(this.x+this.itemWidth+10, newY+5);
-    //     c.stroke();
+        //Container of stack
+        c.beginPath();
+        c.moveTo(this.x-10, newY+5);
+        c.lineTo(this.x-10, this.y+10);
+        c.lineTo(this.x+this.itemWidth+10, this.y+10);
+        c.lineTo(this.x+this.itemWidth+10, newY+5);
+        c.stroke();
 
-    //     console.log("being drawn!");
-    // }
+    }
 
     this.pop = function()
     {

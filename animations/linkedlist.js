@@ -143,7 +143,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             //Circle arrow coords
             var arrowX = newX -(this.itemWidth/2) + this.spacing;
             var arrowY = this.y + this.itemHeight+this.spacing/4;
-            console.log("drawing" + newX);
 
             //Connector
             c.moveTo(arrowX, arrowY);
