@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CJ's DataStructure|LinkedList</title>
     <meta name="description" content="Learn what a linked list is">
+    <script src="scriptGeneral.js"></script>
     <link rel="stylesheet" href="styles/styleGeneral.css">
+   
     <script src="scriptGeneral.js"></script>
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://livejs.com/live.js"></script>
@@ -15,7 +18,6 @@
     <script src="animations/tree.js" ></script>
     <script src="animations/hashtable.js"></script>
     <script src="animations/animationsRun.js" defer></script>
-    <title>Linked List</title>
   </head>
 
 <body>
@@ -27,6 +29,7 @@
           <li><a href="queue.html">Queue</a></li>
           <li><a href="tree.html">Tree</a></li>
           <li><a href="hashtable.html" >HashTables</a></li>
+          <li><a href="interview.html">Interview Q&A</a></li>
          
         </ul>
        
@@ -43,25 +46,49 @@
 
    
     <h1>LinkedList</h1>
+     
+  <div class="interview_btn" id="leftButton">
+    <div>SEE ANIMATION</div>
+    <a href="#animation_container">
+      
+      <i class="fas fa-arrow-down"> </i>
+  </a>
+  
+ 
+</div>
+
+ <!--
+    <div class="interview_btn" id="rightButton">
+      <div>SEE ANIMATION</div>
+  
+      <a href="#animation_container">
+        
+        <i class="fas fa-arrow-down"> </i>
+    </a>
+    
+    
+  </div>-->
+
     <div id="desc_container">
+
         <div id="desc">
-          <header>Definition</header>
-          <div class="overlay">
+          <div>
+          <header>Overview</header>
+       
             <p> A linked list is a linear collection of elements/nodes
             in a sequence. The elements point to the next 
            instead of having a physical placement in memory.</p>
           </div>
-       
+          <header>Singly-Linked List</header>
+          <p>A singly-linked list
+              is traversed in one direction (forwards) which is from the head to the tail.</p>
         
        <header>Doubly-Linked List</header>       
-       <p> A doubly-linked list is a linked list that 
-           can be traversed in two directions (forwards and backwards).
+       <p> A doubly-linked list can be traversed in two directions (forwards and backwards).
             It does so by having a pointer that points to the next and previous nodes. </p>
-       <header>Singly-Linked List</header>
-           <p>A singly linked list is a  linked list that 
-               is traversed in one direction (forwards) which is from the head to the tail.</p>
+      
                <header>Circular Linked List</header>
-         <p> A Circular linked list is a  linked list that 
+         <p> A Circular linked list 
            can be traversed in one direction (fowards), similar to a singly-linked list or
            two directions (fowards and backwards), similar to a doubly-linked list.
             However, the last node which is the tail, 
@@ -70,11 +97,13 @@
        
           
         </div>   
+       
           <div id="tableContainer"></div>
            
-      <div id="complexity">
+          <div class="center"><header>Time Complexity</header></div>
+        
           <table>
-           
+          
               <thead>
                 <tr>
                   <th>Function</th>
@@ -108,15 +137,9 @@
       </div>
     
     
-        <div id="interview_btn">
-            <div>Frequently asked questions during interviews</div>
-            <a href="#interview_container">
-              <i class="fas fa-arrow-down"></i>
-          </a>
-          
-        </div>
+   
          
-    </div>
+  
   
     <div id="animation_container">
     
@@ -127,6 +150,7 @@
             <button id="deleteBtn">Remove</button>      
         </div>
 
+<<<<<<< HEAD
       <div class="other-mode">
         <button id="singlyBtn"class= "other-btn">Singly</button>
         <button id="doublyBtn" class= "other-btn">Doubly</button>
@@ -150,10 +174,71 @@
             3. Your favorite anime
             <br>
             4. your age 
+=======
+          <canvas id="canvas">
+          </canvas>
+          <script src="animations.js"></script>
+        </div>
+      </div>
+ 
+      <div id="interview_container">
+        <p>
+          Common Interview Questions:
+          <ol>
+            <li>Print the Middle of a given linked list</li> 
+            <a href="https://www.geeksforgeeks.org/write-a-c-function-to-print-the-middle-of-the-linked-list/">See Solution</a>
+            <li>Flattening a linked list</li> 
+            <a href="https://www.geeksforgeeks.org/flattening-a-linked-list/">See Solution</a>
             
-          </p>
-  </div>
+            <li>Delete middle of linked list</li> 
+            <a href="https://practice.geeksforgeeks.org/problems/delete-middle-of-linked-list/1">See Solution</a>
+            <li>Remove duplicate elements from sorted linked list</li> 
+            <a href="https://practice.geeksforgeeks.org/problems/remove-duplicate-element-from-sorted-linked-list/1">See Solution</a>
+            <li>Add 1 to a number represented as a linked list</li> 
+            <a href="https://www.geeksforgeeks.org/add-1-number-represented-linked-list/">See Solution</a>
+            <li>Reverse a linked list in groups of given size</li>
+            <a href="https://practice.geeksforgeeks.org/problems/reverse-a-linked-list-in-groups-of-given-size/1">See Solution</a> 
+            <li>Detect loop in linked list</li> 
+            <a href="https://practice.geeksforgeeks.org/problems/detect-loop-in-linked-list/1">See Solution</a>
+            <li>Remove loop in linked list</li> 
+            <a href="https://practice.geeksforgeeks.org/problems/remove-loop-in-linked-list/1">See Solution</a>
+            <li>Find nth node from the end of linked list</li>
+            <a href="https://practice.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1">See Solution</a> 
+            <!--
+            <li>Function to check if a singly linked list is a palindrome</li>
+            <a href="url">See Solution</a>
+            <li>Reverse alternate k node in a singly linked list</li>
+            <a href="url">See Solution</a>
+            <li>Delete last occurrence of an item from linked list</li>
+            <a href="url">See Solution</a>
+            <li>Rotate a linked list.</li>
+            <a href="url">See Solution</a>
+            <li>Delete n nodes after m nodes of a linked list.</li>
+            <a href="url">See Solution</a>
+            <li>Merge a linked list into another linked list at alternate positions.</li>
+            <a href="url">See Solution</a>
+            <li>Write a function to delete a linked list.</li>
+            <a href="url">See Solution</a>
+            <li>Write a function to reverse the nodes of a linked list.</li>
+            <a href="url">See Solution</a>
+            <li>Why quicksort is preferred for arrays and merge sort for linked lists.</li>
+            <a href="url">See Solution</a>
+            <li></li>
+            <a href="">See Solution</a> 
+             -->
+           </ol>
+        </p>
+        <div class="interview_btn">
+         
+          <a href="interview.html">
+>>>>>>> e52240949ccdcbe689b5e7dc5f46a8d4cf34a545
+            
+            <div>SEE MORE</div>
+        </a>
         
+       
+      </div>
+      </div>
   
    
 </body>

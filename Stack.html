@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+    <title>CJ's DataStructure|Stack</title>
+>>>>>>> e52240949ccdcbe689b5e7dc5f46a8d4cf34a545
     <meta name="description" content="Learn what a Stack is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
     <script src="scriptGeneral.js"></script>
@@ -27,6 +31,7 @@
       <li><a href="queue.html">Queue</a></li>
       <li><a href="tree.html">Tree</a></li>
       <li><a href="hashtable.html">HashTable</a></li>
+      <li><a href="interview.html">Interview Q&A</a></li>
     </ul>
     
 </div>
@@ -38,16 +43,23 @@
     class="slider round"></span>
   </label>
   <h1>Stack</h1>
-
+  <div class="interview_btn" id="leftButton">
+    <div>SEE ANIMATION</div>
+    <a href="#animation_container">
+      
+      <i class="fas fa-arrow-down"> </i>
+  </a>
+  
+ 
+</div>
   <div id="desc_container">
     <div id="desc">
-      <header>Definition</header>
+      <header>Overview</header>
       <p>
         A Stack is a data structure that can only be changed from one side, the top of the stack. It has 
                two main operations: push (insert) and pop (remove). 
               Given the data structure's name, it follows LIFO (last in, first out), meaning
-              the push method will add the element to the top of the stack, while the 
-              pop method will also remove the top element. 
+              the element on top of the stack (which is also the last element to be pushed) would be popped out first.
       </p>
       <!--
       <div class="center">
@@ -59,17 +71,12 @@
       -->
     </div>
       
-    <div id="interview_btn">
-      <div>Frequently asked questions during interviews</div>
-     <a href="#interview_container">
-      <i class="fas fa-arrow-down"></i>
-    </a>
     
-  </div>
   
     <div id="tableContainer">
-      <div class="center">Time Complexity</div>
+      
       <div id="complexity">
+        <header>Time Complexity</header>
         <table>
           <thead>
             <tr>
@@ -100,8 +107,9 @@
           </tbody>
         </table>
       </div>
-      <div class="center">Terms to Know</div>
+     
       <div id="methods">
+        <header>Time Complexity</header>
         <table>
             <thead>
               <tr>
@@ -146,22 +154,41 @@
   </div>
     
   </div>
-
+  
   <div id="interview_container">
     <p>
-      Common Interview Questions here:
-      <br>
-      1. your favorite snack
-      <br>
-      2. your name
-      <br>
-      3. Your favorite anime
-      <br>
-      4. your age 
-      
+      Common Interview Questions:
+     <ol>
+          <li>Know stack implementation using Linked List</li>
+          <a href="https://www.techiedelight.com/stack-implementation-using-linked-list/">See Solution</a> 
+          <li>Check if given expression is balanced expression or not</li>
+          <a href="https://www.techiedelight.com/check-given-expression-balanced-expression-not/">See Solution</a> 
+          <li>Find duplicate parenthesis in an expression</li>
+          <a href="https://www.techiedelight.com/find-duplicate-parenthesis-expression/">See Solution</a> 
+          <li>Evaluate given postfix expression</li>
+          <a href="https://www.techiedelight.com/evaluate-given-postfix-expression/">See Solution</a> 
+          <li>Decode the given sequence to construct minimum number without repeated digits</li>
+          <a href="https://www.techiedelight.com/decode-the-given-sequence-construct-minimum-number-without-repeated-digits/">See Solution</a> 
+          <li>Design a stack which returns minimum element in constant time</li>
+          <a href="https://www.techiedelight.com/design-stack-which-returns-minimum-element-constant-time/">See Solution</a> 
+          <li>Design a stack which returns minimum element without using auxiliary stack</li>
+          <a href="https://www.techiedelight.com/design-a-stack-which-returns-minimum-element-without-using-auxiliary-stack/">See Solution</a> 
+          <li>Reverse a string using stack data structure</li>
+          <a href="https://www.techiedelight.com/reverse-a-string-using-stack-data-structure/">See Solution</a> 
+        
+
+        </ol>
     </p>
+    <div class="interview_btn">
+         
+      <a href="interview.html">
+        
+        <div>SEE MORE</div>
+    </a>
+    
+   
   </div>
-  
+  </div>
 
 
 

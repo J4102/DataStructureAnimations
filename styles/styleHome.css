@@ -1,6 +1,6 @@
 html{
     background-color:black;
-    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
+    background:none;
    
     height: 100%;
 
@@ -8,55 +8,124 @@ html{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    align-self: center;
 
 }
+#header_container
+{
+
+ position: relative;
+ margin-left: auto;
+ margin-right: auto;
+
+  
+}
+
+
 body{
-    background-color:black;
-    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
-   
-    height: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
+  
     
-}
-
-main{
     text-align: center;
    margin:0;
    padding:0;
    height:auto;
+   background-color:black;
+   background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
   
+   height: 100%;
+
+   /* Center and scale the image nicely */
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   align-self: center;
   
+    
 }
-main .container
+
+.box
 {
-    display:auto;
-    padding: 15px 32px;
     background-color:black;
+    height:70%;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+.container
+{height:80%;
+    padding: 15px 32px;
     margin-top: 6%;
     opacity: .8;
-    display:inline-block;
     text-align: center;
     color:white;
+    align-self: center;
     
 }
 header{
     font-size:40px;
+    
 }
-body.dark-mode 
+#about
 {
-    background-color:black;
-    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
-   
-    height: 100%;
+    height:20%;
+    background: white;
+    color:black;
+    text-align: justify;
+    display:inline-block;
+    align-self: center;
 
+}
+h2 {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    grid-template-columns: minmax(20px, 1fr) auto minmax(20px, 1fr);
+    grid-gap: 20px;
+}
+
+h2:before,
+h2:after {
+    content: '';
+    border-top: 2px solid;
+}
+#about p
+{
+    margin:3%;
+    margin-left:20%;
+    margin-right:20%;
+   
+}
+
+.image
+{
+    background:url("../images/IMG_7105.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+  
+    width: 200px; 
+  height: 200px; 
+  margin-right:auto;
+  margin-left:auto;
+
+   
+
+   
+}
+body.dark-off
+{
+
+    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
+  
+    height: 100%;
+ 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 
 }
+

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/styleTree.css">
     <script src="scriptGeneral.js"></script>
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
     <script src="animations/linkedlist.js" ></script>
     <script src="animations/queue.js" ></script>
@@ -16,6 +17,9 @@
     <script src="animations/hashtable.js"></script>
     <script src="animations/animationsRun.js" defer></script>
     <title>Tree</title>
+=======
+    <title>CJ's DataStructure|Tree</title>
+>>>>>>> e52240949ccdcbe689b5e7dc5f46a8d4cf34a545
 </head>
 <body>
  <div id="header_container">
@@ -26,6 +30,7 @@
       <li><a href="queue.html">Queue</a></li>
       <li><a href="" class="active">Tree</a></li>
       <li><a href="hashtable.html" >HashTable</a></li>
+      <li><a href="interview.html">Interview Q&A</a></li>
     </ul>
     
   </div>
@@ -37,18 +42,27 @@
     class="slider round"></span>
   </label>
   <h1>Tree</h1>
+  <div class="interview_btn" id="leftButton">
+    <div>SEE ANIMATION</div>
+    <a href="#animation_container">
+      
+      <i class="fas fa-arrow-down"> </i>
+  </a>
+  
+ 
+</div>
   <div id="desc_container">
     
     
     <div id="desc">
-      <header>Definition  </header>
+      <header>Overview</header>
       <p>
 
-        A tree is a data structure that has a hierarchical structure 
+        A <i><b>tree</b> </i>is a data structure that has a hierarchical structure 
             with root (a node with no parent) and subtrees of children (nodes with a parent node). 
 
 
-        A Binary Tree is a tree where all nodes have at most 2 children. What makes it a binary search tree is when the
+        A <i><b>Binary Tree </b></i>is a tree where all nodes have at most 2 children. What makes it a <i><b>binary search tree</b></i> is when the
              left child contains only nodes with values less than the parent node, whereas the right child only contains nodes with values greater than the parent node. 
              Also there are no duplicates allowed.   
       </p>
@@ -61,6 +75,8 @@
       <p>Search - Θ(log(n))</p>
   -->
     </div>
+      
+   
     <div id="tableContainer">
       <div id="complexity">
         <table>
@@ -73,27 +89,29 @@
           </thead>
           
           <tbody>
+            <header>Time Complexity</header>
             <tr class="whiterow">
               <th>Insert</th>
               <th>Θ(log(n))</th>
-              <th>Θ(log(n))</th>
+              <th>O(log(n))</th>
             </tr>
             
             <tr class="grayrow">
               <th>Delete</th>
               <th>Θ(log(n))</th>
-              <th>Θ(log(n))</th>
+              <th>O(log(n))</th>
             </tr>
             
             <tr class="whiterow">
               <th>Search</th>
               <th>Θ(log(n))</th>
-              <th>Θ(log(n))</th>
+              <th>O(log(n))</th>
             </tr>
           </tbody>
         </table>
       </div>
       <div id="methods">
+        <header>Terms to Know</header>
         <table>
             <thead>
               <tr>
@@ -136,14 +154,7 @@
     
     </div>
             
-    
-    <div id="interview_btn">
-      <div>Frequently asked questions during interviews</div>
-      <a href="#interview_container">
-        <i class="fas fa-arrow-down"></i>
-    </a>
-    
-  </div>
+  
   
 </div>
 
@@ -162,22 +173,44 @@
       </canvas>
     </div>
   </div>
-  
   <div id="interview_container">
     <p>
-      Common Interview Questions here:
-      <br>
-      1. your favorite snack
-      <br>
-      2. your name
-      <br>
-      3. Your favorite anime
-      <br>
-      4. your age 
+      Common Interview Questions:
+      <ol>
+        <li>Check if two given binary trees are identical or not | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/check-if-two-binary-trees-are-identical-not-iterative-recursive/">See Solution</a> 
+        <li>Calculate height of a binary tree | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/calculate-height-binary-tree-iterative-recursive/">See Solution</a> 
+        <li>Delete given Binary Tree | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/delete-given-binary-tree-iterative-recursive/">See Solution</a> 
+        <li>Inorder Tree Traversal | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/inorder-tree-traversal-iterative-recursive/">See Solution</a> 
+        <li>Preorder Tree Traversal | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/preorder-tree-traversal-iterative-recursive/">See Solution</a> 
+        <li>Postorder Tree Traversal | Iterative & Recursive</li>
+        <a href="https://www.techiedelight.com/postorder-tree-traversal-iterative-recursive/">See Solution</a> 
+        <li>Level Order Traversal of Binary Tree</li>
+        <a href="https://www.techiedelight.com/level-order-traversal-binary-tree/">See Solution</a> 
+        <li>Reverse Level Order Traversal of Binary Tree</li>
+        <a href="https://www.techiedelight.com/reverse-level-order-traversal-binary-tree/">See Solution</a> 
+        <li>Find next node in same level for given node in a binary tree</li>
+        <a href="https://www.techiedelight.com/find-next-node-in-same-level-binary-tree/">See Solution</a> 
+        <li>Print cousins of given node in a binary tree</li>
+        <a href="https://www.techiedelight.com/print-cousins-of-given-node-binary-tree/">See Solution</a> 
+
+      </ol>
       
     </p>
+    <div class="interview_btn">
+         
+      <a href="interview.html">
+        
+        <div>SEE MORE</div>
+    </a>
+    
+   
   </div>
-
+  </div>
 
       
 </body>

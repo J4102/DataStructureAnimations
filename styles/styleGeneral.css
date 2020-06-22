@@ -9,7 +9,8 @@
 
 body{
   font-family: 'Roboto Mono', monospace;
-  background:url('../images/images.jpg');
+  background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
+  color:white;
 
  
 
@@ -43,14 +44,16 @@ p
 #header_container
 {
 
-  width:50%;
+  width:70%;
   top:0;
-  margin-left: 25%;
+  margin-left: auto;
+  margin-right: auto;
   border-color: #363636;
   border-style: solid;
   text-align: center;
   display:block;
   position:sticky;
+  position:-webkit-sticky;
   transition: top 0.3s ease-in-out;
   overflow:visible;
   
@@ -131,36 +134,36 @@ input:checked + .slider:before {
 /*----------------------------------------------------- */
 /*--------------- NAVIGATION BAR--0-------------------- */
 /*----------------------------------------------------- */
-ul {
+#header_container ul {
   list-style-type:none ;
   margin: 0;
   padding: 0;
   overflow: hidden;
   border: 1px solid #e7e7e7;
-  background-color: #f3f3f3;
+  background-color:black;
  
  
 }
 
-li {
+#header_container  li {
   float: left;
   
 }
 
-li a {
+#header_container  li a {
   display: block;
-  color: #666666;
+  color:white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 14px 20px;
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+#header_container  li a:hover:not(.active) {
   background-color: #ddd;
 }
 
-li a.active {
-  color: white;
+#header_container  li a.active {
+  color:black;
   background-color: #4CAF50;
 }
 
@@ -172,16 +175,16 @@ li a.active {
 {
   height: auto;
   display: auto;
-  border-color: #363636;
+  border-color: WHITE;
   border-style: solid;
   
   margin: 1%;
-  margin-left:15%;
-  margin-right:15%;
+  margin-left:20%;
+  margin-right:20%;
   padding: 0;
   align-self: center;
 
-  background-color:rgba(255,255,255,.5);
+ background-color:rgba(0,0,0,.2); 
 
 
 
@@ -197,6 +200,7 @@ li a.active {
 
 #tableContainer
 {
+    margin-top: 100px;
     height:auto;
     display:auto;
     text-align: center;
@@ -223,6 +227,7 @@ li a.active {
     align-self:center;
     height:auto;
     display:auto;
+   
  
 }
 #desc p{
@@ -233,7 +238,7 @@ li a.active {
 }
 #desc header
 {
-    color:black;
+    color:white;
     font-size: 20px;
     text-decoration: bold;
     margin-left:3%;
@@ -241,42 +246,88 @@ li a.active {
     align-self:center;
    
 }
-#interview_btn 
-{
-  
-  width:10px;
-  margin:1%;
-  
-}
-
-#interview_btn  div{
+/*
+.interview_btn  div{
 
     background: black;
     color: white;
-    margin-bottom: 5px;
-    font-family: sans-serif;
     opacity: 0;
+    font-size: 15px;
     visibility: hidden;
     -webkit-transition: visibility 0s, opacity 0.5s linear; 
     transition: visibility 0s, opacity 0.5s linear;
     text-align: center;
-   }
+   
+   } */
    /* Hover on Parent Container */
-   #interview_btn:hover{
+.interview_btn
+{
+
+  color:#4CAF50;
+  text-align: center;
+
+
+
+
+ 
+
+}
+.interview_btn a{
+  color:#4CAF50;
+}
+
+
+
+   .interview_btn:hover{
     cursor: pointer;
    }
    
-   #interview_btn:hover div{
-    width: 150px;
-    padding: 8px 15px;
+   .interview_btn:hover div{
+
+  
     visibility: visible;
     opacity: 0.7; 
    }
    .fa-arrow-down
    {
-     font-size:30px;
+    
+    
+     font-size:50px;
      color:#4CAF50;
+     align-self: center;
+    
    }
+   .fa-arrow-down:hover
+   {
+    
+    visibility: visible;
+    opacity: 0.7; 
+    
+   }
+   
+   #leftButton
+   {
+    position:-webkit-sticky;
+    position:sticky;
+    width:10%;
+     float:left;
+     margin-left: 2%;
+     margin-right:auto;
+   
+     color:#4CAF50;
+    text-align:center;
+    align-self:center;
+   }
+   #leftButton div{
+    color:#4CAF50;
+  
+    
+    font-size: 20px;
+ 
+   
+  }
+ 
+   
 /*----------------------------------------------------- */
 /*--------------- ANIMATION CONTAINER ----------------- */
 /*----------------------------------------------------- */
@@ -371,14 +422,21 @@ li a.active {
 /*----------------------------------------------------- */
 #interview_container
 {
-  border-color: #363636;
+  border-color:white;
   border-style: solid;
   margin-top: 1vh;
-  float :left;
+  
   width:98%;
   margin: 1%;
-  padding: 0;
+ 
+  margin-left:auto;
+  margin-right:auto;
+ 
   
+}
+#interview_container p
+{
+  padding-left:2em;
 }
 
 /*----------------------------------------------------- */
@@ -418,38 +476,48 @@ td,th
   color: #363636;
 }
 /*----------------------------------------------------- */
-/*--------------- Dark Mode--0-------------------- */
+/*--------------- Dark Mode Off--0-------------------- */
 /*----------------------------------------------------- */
 
-body.dark-mode 
+body.dark-off 
 {
-  background-color: black;
-  background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
-  color: white;
+  
+  background:#CBE9F6;
+ 
+  color:black;
 
  
 }
-.dark-mode #desc_container
+
+.dark-off #desc_container
 {
-  border:1px solid white;
-  background-color:rgba(0,0,0,0.5);
+  border:1px solid black;
+  background-color:rgba(255,255,255,.5);
 }
-.dark-mode ul {
+.dark-off #header_container ul {
  
-  background-color:black;
-  color:white;
+ background: white;
+  color:black;
  
  
 }
-.dark-mode li a {
- color:white;
+.dark-off #header_container li a {
+ color:black;
 }
-.dark-mode #desc header{
-  color:white;
+.dark-off #desc header{
+  color:black;
   opacity:1;
 }
 
-.dark-mode #interview_container {
-  background-image: url('../images/milky-way-starry-sky-night-sky-star-957061.jpeg');
-  border:1px solid white;
+.dark-off #interview_container {
+ 
+  border:1px solid black;
+}
+.dark-off #animation_container
+{
+  border-color: black;
+}
+.dark-off #interview_container
+{
+  border-color: #363636;
 }

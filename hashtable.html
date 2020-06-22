@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CJ's DataStructure|HashTable</title>
     <meta name="description" content="Learn what a hash table is and see animation">
     <link rel="stylesheet" href="styles/styleGeneral.css">
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
@@ -14,8 +15,6 @@
     <script src="animations/tree.js" ></script>
     <script src="animations/hashtable.js"></script>
     <script src="animations/animationsRun.js" defer></script>
-    
-    <title>HashTable</title>
 </head>
 
 <div id="header_container">
@@ -26,6 +25,7 @@
       <li><a href="queue.html">Queue</a></li>
       <li><a href="tree.html">Tree</a></li>
       <li><a href="" class="active">HashTable</a></li>
+      <li><a href="interview.html">Interview Q&A</a></li>
       <script src="scriptGeneral.js"></script>
     </ul>
     
@@ -38,9 +38,18 @@
     class="slider round"></span>
   </label>
   <h1>HashTables</h1>
+  <div class="interview_btn" id="leftButton">
+    <div>SEE ANIMATION</div>
+    <a href="#animation_container">
+      
+      <i class="fas fa-arrow-down"> </i>
+  </a>
+  
+ 
+</div>
   <div id="desc_container">
     <div id="desc">
-      <header>Definition</header>
+      <header>Overview</header>
       <p>
         A Hash Table is a data structure that stores values associated with a key (key-value pairs). 
         The Hash Table stores these values in an efficient manner by using a hash function. This function
@@ -49,6 +58,7 @@
       </p>
     </div>
 
+   
     <div id="tableContainer">
       <div id="complexity">
         <header>Time Complexity</header>
@@ -84,27 +94,22 @@
       </div>
       </div>
     
-    <div id="interview_btn">
-      <div>Frequently asked questions during interviews</div>
-      <a href="#interview_container">
-        <i class="fas fa-arrow-down"></i>
-    </a>
-    
-    </div>
   </div>
 
-  
   <div id="animation_container">
     <div id="animation">
       <div class="btn-methods">
         <input type="text" id="inputField" name="inputField" value="">
         <button id="insertHashTableBtn">Insert</button>
         <button id="removeHashTableBtn">Remove</button>
+<<<<<<< HEAD
       </div>
 
       <div class="other-mode">
         <button id="rehashHashTableBtn" class="other-btn">Rehash</button>
         <button id="incrSizeHashTableBtn" class="other-btn">Increase Size</button>
+=======
+>>>>>>> e52240949ccdcbe689b5e7dc5f46a8d4cf34a545
       </div>
       
       <canvas id="canvas"></canvas>
@@ -114,17 +119,38 @@
   
   <div id="interview_container">
     <p>
-      Common Interview Questions here:
-      <br>
-      1. your favorite snack
-      <br>
-      2. your name
-      <br>
-      3. Your favorite anime
-      <br>
-      4. your age 
+      Common Interview Questions:
+      <ol>
+        <li>Advantages of BST over Hash Table</li>
+        <a href="https://www.geeksforgeeks.org/advantages-of-bst-over-hash-table/">See Solution</a> 
+        <li>Find whether an array is subset of another array</li>
+        <a href="https://www.geeksforgeeks.org/top-20-hashing-technique-based-interview-questions/">See Solution</a> 
+        <li>Union and Intersection of two Linked Lists</li>
+        <a href="https://www.geeksforgeeks.org/union-and-intersection-of-two-linked-lists/">See Solution</a> 
+        <li>Given an array A[] and a number x, check for pair in A[] with sum as x</li>
+        <a href="https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/">See Solution</a> 
+        <li>Find Itinerary from a given list of tickets</li>
+        <a href="https://www.geeksforgeeks.org/find-itinerary-from-a-given-list-of-tickets/">See Solution</a> 
+        <li>Implementing our Own Hash Table with Separate Chaining in Java</li>
+        <a href="https://www.geeksforgeeks.org/implementing-our-own-hash-table-with-separate-chaining-in-java/">See Solution</a> 
+        <li>Internal Working of HashMap in Java</li>
+        <a href="https://www.geeksforgeeks.org/internal-working-of-hashmap-java/">See Solution</a> 
+        <li>Open Addressing for Collision Handling</li>
+        <a href="https://www.geeksforgeeks.org/hashing-set-3-open-addressing/">See Solution</a> 
+        <li>Separate Chaining for Collision Handling</li>
+        <a href="https://www.geeksforgeeks.org/hashing-set-2-separate-chaining/">See Solution</a> 
       
+      </ol>
     </p>
+    <div class="interview_btn">
+         
+      <a href="interview.html">
+        
+        <div>SEE MORE</div>
+    </a>
+    
+   
+  </div>
   </div>
   
   
