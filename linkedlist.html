@@ -12,11 +12,11 @@
     <script src="https://kit.fontawesome.com/e7ccf0d564.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://livejs.com/live.js"></script>
     
-    <script src="animations/linkedlist.js" ></script>
-    <script src="animations/queue.js" ></script>
-    <script src="animations/stack.js" ></script>
-    <script src="animations/tree.js" ></script>
-    <script src="animations/hashtable.js"></script>
+    <script src="animations/queue.js" defer ></script>
+    <script src="animations/stack.js" defer></script>
+    <script src="animations/tree.js" defer></script>
+    <script src="animations/hashtable.js" defer></script>
+    <script src="animations/linkedlist.js" defer></script>
     <script src="animations/animationsRun.js" defer></script>
   </head>
 
@@ -136,50 +136,37 @@
             
       </div>
     
-    
-   
-         
-  
-  
     <div id="animation_container">
     
       <div id="animation">  
         <div class="btn-methods">
-            <input type="text" id="inputField" name="inputField" value="">
+          <input type="text" id="inputIndex" name="inputIndex" placeholder="value" required>
+            <input type="text" id="inputField" name="inputField" placeholder="index" required>
             <button id="insertBtn">Insert</button>
-            <button id="deleteBtn">Remove</button>      
+            <button id="deleteBtn">Remove (only index needed)</button>  
+                
         </div>
 
-<<<<<<< HEAD
-      <div class="other-mode">
-        <button id="singlyBtn"class= "other-btn">Singly</button>
-        <button id="doublyBtn" class= "other-btn">Doubly</button>
-        <button id="circularBtn" class= "other-btn">Circular</button>
-      </div>
+        <div class="btn-methods">
+          <input type="text" id="inputTailField" name="inputTailField" placeholder="value" required> 
+          <button id="insertTailBtn">Insert at Tail</button>
+          <button id="deleteTailBtn">Remove at Tail</button>  
+        </div>
+   
+        <div class="other-mode">
+          <button id="singlyBtn"class= "other-btn">Singly</button>
+          <button id="doublyBtn" class= "other-btn">Doubly</button>
+          <button id="circularBtn" class= "other-btn">Circular</button>
+        </div>
 
-          <canvas id="canvas"></canvas>
+
+
+
+        <canvas id="canvas"></canvas>
           
       </div>
 
     </div>
-    
-  <div id="interview_container">
-          <p>
-            Common Interview Questions here:
-            <br>
-            1. your favorite snack
-            <br>
-            2. your name
-            <br>
-            3. Your favorite anime
-            <br>
-            4. your age 
-=======
-          <canvas id="canvas">
-          </canvas>
-          <script src="animations.js"></script>
-        </div>
-      </div>
  
       <div id="interview_container">
         <p>
@@ -231,7 +218,6 @@
         <div class="interview_btn">
          
           <a href="interview.html">
->>>>>>> e52240949ccdcbe689b5e7dc5f46a8d4cf34a545
             
             <div>SEE MORE</div>
         </a>
