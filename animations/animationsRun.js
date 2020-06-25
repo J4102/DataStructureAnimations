@@ -43,10 +43,10 @@ var linkedList;
 
 
 //It doesn't matter what x & y for tree is
-var tree = new BinaryTree(0, 0, 20, 100,[10]);
+var tree = new BinaryTree(0, 0, 20, 100,[15, 20, 10, 5]);
 tree.initialize();
 
-var hashTable = new HashTable(30, canvas.height/2, 125, 40, 11, ["mo", "fun", "i", "huh"]);
+var hashTable = new HashTable(200, 0, 125, 40, 11, ["mo", "fun", "i", "huh"]);
 hashTable.initialize();
 
 var mode = "";
@@ -142,7 +142,14 @@ function setupBtns()
 
         function()
         {
-            linkedList.delete(document.getElementById("inputIndex").value);
+            if(!isNaN(document.getElementById("inputIndex").value))
+            {
+                linkedList.delete(document.getElementById("inputIndex").value);
+            }
+            else
+            {
+                window.alert("Please enter a valid index!");
+            }
         }
         );
 
@@ -150,9 +157,10 @@ function setupBtns()
 
         function()
         {
-            if(checkValidInput())
+
+            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value))
             {
-                linkedList.insert(document.getElementById("inputField").value, document.getElementById("inputIndex").value);
+                linkedList.insert(document.getElementById("inputIndex").value, document.getElementById("inputField").value);
             }
             else
             {
@@ -166,12 +174,10 @@ function setupBtns()
         function()
         {
             var field = document.getElementById("inputTailField").value;
-            console.log(field.length);
-            console.log(isNaN(field));
 
             if(field.length > 0 && field.length <= 2 && (!isNaN(field)))
             {
-                linkedList.insert(document.getElementById("inputTailField").value, linkedList.getSize());
+                linkedList.insert(linkedList.getSize(), document.getElementById("inputTailField").value);
             }
             else
             {

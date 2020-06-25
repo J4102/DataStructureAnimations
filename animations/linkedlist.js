@@ -170,11 +170,14 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     //Remove
     this.delete = function(index)
     {
-        console.log("Prep for deletion:: " + this.data + " With this number: " + x);
-        if(this.numItems == 0)
-            return;
 
-        if(index === -1)
+        if(this.numItems == 0)
+        {
+            window.alert("There are no elements!")
+            return;
+        }
+
+        if(index > 0 || index > this.numItems)
         {
             window.alert("This element does not exist in the linked list!")
             return;
@@ -196,7 +199,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     }
 
     //Add
-    this.insert = function(num, index)
+    this.insert = function(index, num)
     {
         if(index > this.numItems || index < 0)
         {
