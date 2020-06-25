@@ -13,9 +13,16 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     this.itemWidth = itemWidth;
     this.itemHeight = itemHeight;
     this.numItems = numItems;
-    this.data = data;
+    this.data = [];
+
+    for(var i = 0; i < data.length; i++)
+    {
+        this.data.push(data[i]);
+    }
     this.spacing = spacing;
     this.mode = mode;
+
+    console.log(this.data);
 
     //Possible colors of the stack items
     this.availColors = ["#257CAF", "#F79B0E", "#109D7F", "#D00636"];
@@ -161,27 +168,49 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
     }
 
     //Remove
-    this.delete = function()
+    this.delete = function(index)
     {
 
         if(this.numItems == 0)
+        {
+            window.alert("There are no elements!")
             return;
+        }
+
+        if(index > 0 || index > this.numItems)
+        {
+            window.alert("This element does not exist in the linked list!")
+            return;
+        }
+
+        if(index > this.numItems || index < 0)
+        {
+            window.alert("This index is not between 0 and " + (this.numItems-1)+"!");
+            return;
+        }
+
+        this.data.splice(index, 1);
+        this.colors.splice(index, 1);
         
         this.numItems--;
-        this.data.pop();
-        this.colors.pop();
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
     }
 
     //Add
-    this.insert = function(num)
+    this.insert = function(index, num)
     {
+        if(index > this.numItems || index < 0)
+        {
+            window.alert("This index is not between 0 and " + (this.numItems-1)+"!");
+            return;
+        }
+        
         this.numItems++;
-        this.data.push(num);
+        this.data.splice(index, 0, num);
 
-        this.colors.push(this.availColors[this.numItems % 4]);
+        this.colors.splice(index, 0, this.availColors[this.numItems % 4]);
 
         var snd = new Audio("sounds/pop.flac");
         snd.play();
@@ -201,18 +230,8 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
         }
     }
 
-    // this.resize = function(x)
-    // {
-    //     if(this.itemWidth+x > animation.clientWidth)
-    //     {
-    //         this.x+=(this.itemWidth*5);
-            
-    //         var newWidth = this.x+20;
-    //         canvas.width = newWidth;
-    //         canvas.style.width = ""+newWidth+"px";
-            
-    //         animation.style.width = ""+newWidth+"px";
-    //         animation.width = newWidth;
-    //     }
-    // }
+    this.getSize = function()
+    {
+        return this.numItems;
+    }
 }

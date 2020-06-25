@@ -43,10 +43,10 @@ var linkedList;
 
 
 //It doesn't matter what x & y for tree is
-var tree = new BinaryTree(0, 0, 20, 100,[10,3,15]);
+var tree = new BinaryTree(0, 0, 20, 100,[15, 20, 10, 5]);
 tree.initialize();
 
-var hashTable = new HashTable(canvas.width/2, canvas.height-20, 125, 40, 11, ["mo", "fun", "i", "huh"]);
+var hashTable = new HashTable(200, 0, 125, 40, 11, ["mo", "fun", "i", "huh"]);
 hashTable.initialize();
 
 var mode = "";
@@ -142,7 +142,14 @@ function setupBtns()
 
         function()
         {
-            linkedList.delete();
+            if(!isNaN(document.getElementById("inputIndex").value))
+            {
+                linkedList.delete(document.getElementById("inputIndex").value);
+            }
+            else
+            {
+                window.alert("Please enter a valid index!");
+            }
         }
         );
 
@@ -150,14 +157,42 @@ function setupBtns()
 
         function()
         {
-            if(checkValidInput())
+
+            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value))
             {
-                linkedList.insert(document.getElementById("inputField").value);
+                linkedList.insert(document.getElementById("inputIndex").value, document.getElementById("inputField").value);
             }
             else
             {
                 window.alert("Please enter a single or double digit number!");
             }
+        }
+        );
+
+        document.getElementById("insertTailBtn").addEventListener("click",
+
+        function()
+        {
+            var field = document.getElementById("inputTailField").value;
+
+            if(field.length > 0 && field.length <= 2 && (!isNaN(field)))
+            {
+                linkedList.insert(linkedList.getSize(), document.getElementById("inputTailField").value);
+            }
+            else
+            {
+                window.alert("Please enter a single or double digit number!");
+            }
+        }
+        );
+
+        document.getElementById("deleteTailBtn").addEventListener("click",
+
+        function()
+        {
+
+
+            linkedList.delete(linkedList.getSize()-1);
         }
         );
 

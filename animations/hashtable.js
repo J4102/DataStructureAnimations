@@ -197,7 +197,7 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
     {
         if(y-this.itemHeight < 0)
         {
-            this.y+=(this.itemHeight*5);
+            this.y+=(this.itemHeight*1.5);
 
             var newHeight = this.y+20;
             canvas.height = newHeight;
@@ -205,6 +205,8 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
             animation.style.height = ""+newHeight+"px";
             animation.height = newHeight;
+
+            console.log("resize OMG LOL!")
         }
     }
 

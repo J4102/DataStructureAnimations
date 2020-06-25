@@ -21,12 +21,15 @@ function BinaryTree(x, y, itemRadius,spacing, data)
     this.spacing = spacing;
     
     //Data can only be numbers!
-    this.data = data;
+    this.data = [];
     this.treeHeight = 0;
 
     //1st node
     this.root = new Node(data[0], null, null);
+    this.data.push(data[0]);
+
     this.numItems = 1;
+    
 
     this.getRoot = function()
     {
@@ -69,12 +72,22 @@ function BinaryTree(x, y, itemRadius,spacing, data)
 
     this.insertNode = function(parent, node)
     {
+
+        node.x = parseInt(node.x);
+
         if(parent.x < node.x)
         {
             if(parent.right === null)
             {
+                if(this.data.includes(node.x))
+                {
+                    window.alert("You cannot add duplicates to the tree!");
+                    return;
+                }
+
                 parent.right = node;
                 this.numItems++;
+                this.data.push(node.x);
                 this.updateTreeSpacing();
             }
             else
@@ -84,8 +97,19 @@ function BinaryTree(x, y, itemRadius,spacing, data)
         {
             if(parent.left === null)
             {
+                if(this.data.includes(node.x))
+                {
+                    window.alert("You cannot add duplicates to the tree!");
+                    return;
+                }
+                else
+                {
+                    console.log(this.data)
+                }
+
                 parent.left = node;
                 this.numItems++;
+                this.data.push(node.x);
                 this.updateTreeSpacing();
             }
             else
@@ -126,6 +150,10 @@ function BinaryTree(x, y, itemRadius,spacing, data)
             {
                 parent = null;
                 this.numItems--;
+
+                const index = this.data.indexOf(parent.x);
+                this.data.splice(index, 1);
+
                 return parent;
             }
 
@@ -133,12 +161,20 @@ function BinaryTree(x, y, itemRadius,spacing, data)
             {
                 this.numItems--;
                 parent = parent.right;
+
+                const index = this.data.indexOf(parent.x);
+                this.data.splice(index, 1);
+
                 return parent;
             }
             else if(parent.right === null)
             {
                 this.numItems--;
                 parent = parent.left;
+
+                const index = this.data.indexOf(parent.x);
+                this.data.splice(index, 1);
+
                 return parent;
             }
             else
@@ -146,6 +182,9 @@ function BinaryTree(x, y, itemRadius,spacing, data)
                 //For 2 children
                 var tmp = this.findMinNode(parent.right);
                 parent.x = tmp.x;
+
+                const index = this.data.indexOf(parent.x);
+                this.data.splice(index, 1);
 
                 parent.right = this.deleteNode(parent.right, tmp.x);
                 return parent;
@@ -168,7 +207,7 @@ function BinaryTree(x, y, itemRadius,spacing, data)
     this.initialize = function()
     {
         //data array is inserted into a binary tree structure in the order of items
-        for(var i = 1; i < this.data.length; i++)
+        for(var i = 1; i < data.length; i++)
         {
             this.insertNode(this.root, new Node(data[i], null, null));
         }
@@ -263,9 +302,6 @@ function BinaryTree(x, y, itemRadius,spacing, data)
         }
 
         var newSpacing = lowestPowOf2 *30 ;
-
-        //newSpacing / 1.5 
-
 
         this.spacing = newSpacing;
 
