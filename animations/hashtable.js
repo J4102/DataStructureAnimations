@@ -128,8 +128,6 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
         this.draw();
 
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
     }
 
     this.insert = function(word, init)
@@ -169,13 +167,6 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
         this.numItems++;
 
         this.draw();
-        
-        //Only can play sound when page is loaded
-        if(!init)
-        {
-            var snd = new Audio("sounds/pop.flac");
-            snd.play();
-        }
 
     }
 
@@ -205,8 +196,6 @@ function HashTable(x, y, itemWidth, itemHeight, size, initialData)
 
             animation.style.height = ""+newHeight+"px";
             animation.height = newHeight;
-
-            console.log("resize OMG LOL!")
         }
     }
 

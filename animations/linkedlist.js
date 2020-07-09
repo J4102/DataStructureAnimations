@@ -177,7 +177,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             return;
         }
 
-        if(index > 0 || index > this.numItems)
+        if(index > this.numItems)
         {
             window.alert("This element does not exist in the linked list!")
             return;
@@ -194,8 +194,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
         
         this.numItems--;
 
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
     }
 
     //Add
@@ -211,9 +209,6 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
         this.data.splice(index, 0, num);
 
         this.colors.splice(index, 0, this.availColors[this.numItems % 4]);
-
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
     }
     
     this.resize = function(x)

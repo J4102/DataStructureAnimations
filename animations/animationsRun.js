@@ -96,13 +96,6 @@ function animate()
             break;
     }
 
-
-    //Repeatedly draw the rectangle on the screen
-    //queue.draw();
-    //stack.draw();
-    //linkedList.draw();
-    //tree.draw(tree.getRoot(), 500, 100, 1, "");
-
 }
 
 animate();
@@ -142,14 +135,10 @@ function setupBtns()
 
         function()
         {
-            if(!isNaN(document.getElementById("inputIndex").value))
-            {
+            if(!isNaN(document.getElementById("inputIndex").value) && document.getElementById("inputIndex").value.length != 0)
                 linkedList.delete(document.getElementById("inputIndex").value);
-            }
             else
-            {
                 window.alert("Please enter a valid index!");
-            }
         }
         );
 
@@ -158,14 +147,10 @@ function setupBtns()
         function()
         {
 
-            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value))
-            {
+            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value) && document.getElementById("inputIndex").value.length == 0)
                 linkedList.insert(document.getElementById("inputIndex").value, document.getElementById("inputField").value);
-            }
             else
-            {
                 window.alert("Please enter a single or double digit number!");
-            }
         }
         );
 
@@ -176,13 +161,9 @@ function setupBtns()
             var field = document.getElementById("inputTailField").value;
 
             if(field.length > 0 && field.length <= 2 && (!isNaN(field)))
-            {
                 linkedList.insert(linkedList.getSize(), document.getElementById("inputTailField").value);
-            }
             else
-            {
                 window.alert("Please enter a single or double digit number!");
-            }
         }
         );
 
@@ -258,13 +239,9 @@ function setupBtns()
         function()
         {
             if(checkValidInput())
-            {
                 queue.enqueue(document.getElementById("inputField").value);
-            }
             else
-            {
                 window.alert("Please enter a single or double digit number!");
-            }
         }
         );
 
@@ -285,13 +262,9 @@ function setupBtns()
         function()
         {
             if(checkValidInput())
-            {
                 stack.push(document.getElementById("inputField").value);
-            }
             else
-            {
                 window.alert("Please enter a single or double digit number!")
-            }
         }
         );
 
@@ -304,16 +277,9 @@ function setupBtns()
             function()
             {
                 if(checkValidInput())
-                {
-                    var snd = new Audio("sounds/pop.flac");
-                    snd.play();
-                    
-                    tree.insertNode(tree.getRoot(), new Node(document.getElementById("inputField").value, null, null));
-                }
+                    tree.insertNode(tree.getRoot(), new Node(parseInt(document.getElementById("inputField").value), null, null));
                 else
-                {
                     window.alert("Please enter a single or double digit number!")
-                }
             }
             
         );

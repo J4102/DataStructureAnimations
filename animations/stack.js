@@ -88,9 +88,6 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
         
         
         this.draw();
-
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
     }
 
     this.push = function(num)
@@ -101,9 +98,6 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
         this.colors.unshift(this.availColors[this.numItems % 4]);
 
         this.draw();
-
-        var snd = new Audio("sounds/pop.flac");
-        snd.play();
     }
 
 
