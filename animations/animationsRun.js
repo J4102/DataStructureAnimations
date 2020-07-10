@@ -142,7 +142,7 @@ function setupBtns()
 
         function()
         {
-            if(!isNaN(document.getElementById("inputIndex").value))
+            if(!isNaN(document.getElementById("inputIndex").value)&& document.getElementById("inputIndex").value.length != 0)
             {
                 linkedList.delete(document.getElementById("inputIndex").value);
             }
@@ -158,7 +158,7 @@ function setupBtns()
         function()
         {
 
-            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value))
+            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value)&& document.getElementById("inputIndex").value.length != 0)
             {
                 linkedList.insert(document.getElementById("inputIndex").value, document.getElementById("inputField").value);
             }
