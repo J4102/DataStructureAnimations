@@ -11,17 +11,6 @@ html{
     align-self: center;
 
 }
-#header_container
-{
-
- position: relative;
- margin-left: auto;
- margin-right: auto;
-
-  
-}
-
-
 body{
   
     
@@ -38,7 +27,7 @@ body{
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
-   align-self: center;
+   align-self: auto;
   
     
 }
@@ -46,14 +35,14 @@ body{
 .box
 {
     background-color:black;
-    height:70%;
+    height:90%;
     width:90%;
     margin-left: auto;
     margin-right: auto;
     align-self: center;
 }
 .container
-{height:80%;
+{height:73%;
     padding: 15px 32px;
     margin-top: 6%;
     opacity: .8;
@@ -62,18 +51,30 @@ body{
     align-self: center;
     
 }
+#downButton
+{
+
+    color:white;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:8%;
+  
+}
 header{
     font-size:40px;
     
 }
+#header_container
+{
+    position:relative;
+}
 #about
 {
-    height:20%;
+    height:27%;
     background: white;
     color:black;
-    text-align: justify;
-    display:inline-block;
-    align-self: center;
+    position:relative;
 
 }
 h2 {
@@ -95,7 +96,7 @@ h2:after {
     margin:3%;
     margin-left:20%;
     margin-right:20%;
-   
+  
 }
 
 .image
@@ -106,26 +107,17 @@ h2:after {
     background-size: cover;
    
   
-    width: 200px; 
-  height: 200px; 
+    height:200px;
+    width:300px;
+    
   margin-right:auto;
   margin-left:auto;
-
    
 
    
 }
-body.dark-off
+.dark-off 
 {
-
-    background:url("../images/kvistholt-photography-oZPwn40zCK4-unsplash.jpg");
-  
-    height: 100%;
- 
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+background:white;
 
 }
-

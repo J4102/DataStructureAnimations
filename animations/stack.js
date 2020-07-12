@@ -105,7 +105,7 @@ function Stack(x, y, itemWidth, itemHeight, numItems, data)
     {
         if(y-this.itemHeight < 0)
         {
-            this.y+=(this.itemHeight*5);
+            this.y+=(this.itemHeight*2);
             
             var newHeight = this.y+20;
             canvas.height = newHeight;
