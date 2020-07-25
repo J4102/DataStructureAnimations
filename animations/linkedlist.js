@@ -177,7 +177,7 @@ function LinkedList(x, y, itemWidth, itemHeight, numItems, spacing, mode,  data)
             return;
         }
 
-        if(index > this.numItems)
+        if(index > this.numfItems)
         {
             window.alert("This element does not exist in the linked list!")
             return;

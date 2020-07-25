@@ -147,7 +147,7 @@ function setupBtns()
         function()
         {
 
-            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value) && document.getElementById("inputIndex").value.length == 0)
+            if(checkValidInput() && !isNaN(document.getElementById("inputIndex").value))
                 linkedList.insert(document.getElementById("inputIndex").value, document.getElementById("inputField").value);
             else
                 window.alert("Please enter a single or double digit number!");
